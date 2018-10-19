@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Addresses]
 (
-	[Id]                INT			    NOT NULL IDENTITY (1,1),
+	[Id]                INT             NOT NULL IDENTITY (1,1),
 	[Continent]         NVARCHAR(100)   NULL,
 	[Country]           NVARCHAR(100)   NULL,
 	[State]             NVARCHAR(100)   NULL,
