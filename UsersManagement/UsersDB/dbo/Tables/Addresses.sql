@@ -1,7 +1,7 @@
 ﻿/* 
  * GNU GPL-3.0 29 June 2007
  * SQL script of Addresses table.
- * Copyright (C) 2018  Sevak Amirkhanaian
+ * Copyright (C) 2018  Sevak Amirkhanian
  * Email: amirkhanyan.sevak@gmail.com
  * For full notice please see https://github.com/amirkhaniansev/xems/blob/master/LICENSE.
  */
