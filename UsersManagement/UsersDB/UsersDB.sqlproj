@@ -59,6 +59,14 @@
     <Folder Include="Properties" />
     <Folder Include="dbo" />
     <Folder Include="dbo\Tables" />
+    <Folder Include="dbo\StoredProcedures" />
+    <Folder Include="dbo\StoredProcedures\Addresses" />
+    <Folder Include="dbo\StoredProcedures\Users" />
+    <Folder Include="dbo\StoredProcedures\Sessions" />
+    <Folder Include="dbo\StoredProcedures\Profiles" />
+    <Folder Include="dbo\StoredProcedures\Lecturers" />
+    <Folder Include="dbo\StoredProcedures\Students" />
+    <Folder Include="dbo\StoredProcedures\Verifications" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Users.sql" />

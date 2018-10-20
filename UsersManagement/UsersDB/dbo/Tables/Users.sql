@@ -1,4 +1,12 @@
-﻿CREATE TABLE [dbo].[Users]
+﻿/* 
+ * GNU GPL-3.0 29 June 2007
+ * SQL script of Addresses table.
+ * Copyright (C) 2018  Sevak Amirkhanaian
+ * Email: amirkhanyan.sevak@gmail.com
+ * For full notice please see https://github.com/amirkhaniansev/xems/blob/master/LICENSE.
+ */
+
+CREATE TABLE [dbo].[Users]
 (
 	[Id]                INT             NOT NULL	IDENTITY (1,1),
 	[FirstName]         NVARCHAR(100)   NOT NULL,
@@ -22,5 +30,5 @@
 	CONSTRAINT PK_User                  PRIMARY KEY ([Id]),
 	CONSTRAINT FK_User_Address          FOREIGN KEY ([AddressId])		 REFERENCES [dbo].[Addresses]([Id]),
 	CONSTRAINT FK_User_Current_Profile  FOREIGN KEY ([CurrentProfileId]) REFERENCES [dbo].[Profiles]([Id]),
-	CONSTRAINT FK_Last_Session          FOREIGN KEY ([LastSessionId])	 REFERENCES	[dbo].[Sessions]([Id])
+	CONSTRAINT FK_Last_Session          FOREIGN KEY ([LastSessionId])    REFERENCES	[dbo].[Sessions]([Id])
 )
