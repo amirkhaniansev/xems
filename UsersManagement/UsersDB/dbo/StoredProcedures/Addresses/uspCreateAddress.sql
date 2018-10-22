@@ -19,12 +19,12 @@ CREATE PROCEDURE [dbo].[uspCreateAddress]
 
 			DECLARE @id INT 
 			SELECT @id = [Id] FROM [dbo].[Addresses]
-					WHERE [Continent] = @continent and
-						  [Country] = @country and
-						  [State] = @state and
-						  [CityOrVillage] = @cityOrVillage and
-						  [Street] = @street and
-						  [Building] = @building and
+					WHERE [Continent] = @continent AND
+						  [Country] = @country AND
+						  [State] = @state AND
+						  [CityOrVillage] = @cityOrVillage AND
+						  [Street] = @street AND
+						  [Building] = @building AND
 						  [ZipCode] = @zipCode	
 
 			IF @id IS NULL

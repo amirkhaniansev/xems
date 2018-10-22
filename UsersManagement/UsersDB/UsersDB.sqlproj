@@ -84,5 +84,6 @@
     <Build Include="dbo\StoredProcedures\Users\uspCreateUser.sql" />
     <Build Include="dbo\StoredProcedures\Sessions\uspCreateSession.sql" />
     <Build Include="dbo\StoredProcedures\Verifications\uspCreateVerification.sql" />
+    <Build Include="dbo\StoredProcedures\Verifications\uspCheckVerificationCode.sql" />
   </ItemGroup>
 </Project>

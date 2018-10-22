@@ -10,7 +10,7 @@ CREATE PROCEDURE [dbo].[uspCreateVerification]
 	@userId           INT,
 	@verificationCode VARCHAR(100),
 	@creationDate     DATETIME2,
-	@expirationDate   DATETIME
+	@expirationDate   DATETIME2
 AS
 	BEGIN
 		INSERT INTO [dbo].[Verifications]
