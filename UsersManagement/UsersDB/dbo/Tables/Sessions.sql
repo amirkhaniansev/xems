@@ -8,11 +8,12 @@
 
 CREATE TABLE [dbo].[Sessions]
 (
-	[Id]            BIGINT           NOT NULL  IDENTITY(1,1),
 	[UserId]        INT              NOT NULL,
-	[IpAddress]     NVARCHAR(100)    NULL,
+	[IpAddress]     NVARCHAR(100)    NOT NULL  DEFAULT(N'0.0.0.0'), 
 	[StartTime]     DATETIME2        NOT NULL,
-	[EndTime]       DATETIME2        NOT NULL,
+	[EndTime]       DATETIME2        NULL,
+	[Platform]		NVARCHAR(100)    NULL,
+	[Description]	NVARCHAR(2500)	 NULL,
 
-	CONSTRAINT   PK_Session PRIMARY KEY ([Id])
+	CONSTRAINT   PK_Session     PRIMARY KEY ([UserId],[IpAddress],[StartTime])
 )

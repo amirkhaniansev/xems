@@ -59,8 +59,8 @@ AS
 						GETDATE(),
 						NULL,
 						NULL,
-						@addressId,
-						NULL)
+						@addressId
+						)
 			SET @userId = SCOPE_IDENTITY()
 		COMMIT TRANSACTION CREATE_USER
 

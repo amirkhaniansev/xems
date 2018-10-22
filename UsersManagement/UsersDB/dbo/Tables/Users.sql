@@ -24,11 +24,9 @@ CREATE TABLE [dbo].[Users]
 	[RegisterDate]      DATE            NOT NULL,
 	[VerificationDate]  DATE            NULL,
 	[CurrentProfileId]  INT             NULL,
-	[AddressId]         INT             NULL,
-	[LastSessionId]     BIGINT          NULL,
-	
+	[AddressId]         INT             NULL
+
 	CONSTRAINT PK_User                  PRIMARY KEY ([Id]),
 	CONSTRAINT FK_User_Address          FOREIGN KEY ([AddressId])		 REFERENCES [dbo].[Addresses]([Id]),
-	CONSTRAINT FK_User_Current_Profile  FOREIGN KEY ([CurrentProfileId]) REFERENCES [dbo].[Profiles]([Id]),
-	CONSTRAINT FK_Last_Session          FOREIGN KEY ([LastSessionId])    REFERENCES	[dbo].[Sessions]([Id])
+	CONSTRAINT FK_User_Current_Profile  FOREIGN KEY ([CurrentProfileId]) REFERENCES [dbo].[Profiles]([Id])
 )

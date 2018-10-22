@@ -82,5 +82,7 @@
     <Build Include="dbo\StoredProcedures\Students\uspCreateStudent.sql" />
     <Build Include="dbo\StoredProcedures\Lecturers\uspCreateLecturer.sql" />
     <Build Include="dbo\StoredProcedures\Users\uspCreateUser.sql" />
+    <Build Include="dbo\StoredProcedures\Sessions\uspCreateSession.sql" />
+    <Build Include="dbo\StoredProcedures\Verifications\uspCreateVerification.sql" />
   </ItemGroup>
 </Project>
