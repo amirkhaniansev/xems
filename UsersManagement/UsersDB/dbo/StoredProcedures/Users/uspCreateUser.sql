@@ -27,6 +27,10 @@ CREATE PROCEDURE [dbo].[uspCreateUser]
 	@zipCode       VARCHAR(50)
 AS
 	BEGIN
+		IF EXISTS (SELECT [Username] FROM [dbo].[Users] 
+					WHERE [Username] = @username)
+			RETURN 0
+
 		DECLARE @addressId INT
 		EXEC @addressId = uspCreateAddress
 					@continent,
@@ -36,10 +40,6 @@ AS
 					@street,
 					@building,
 					@zipCode
-		
-		IF EXISTS (SELECT [Username] FROM [dbo].[Users] 
-					WHERE [Username] = @username)
-			RETURN 0;
 
 		DECLARE @userId INT
 		BEGIN TRANSACTION CREATE_USER
