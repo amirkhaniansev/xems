@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Users.sql" />
-    <Build Include="dbo\Tables\Addresses.sql" />
     <Build Include="dbo\Tables\Profiles.sql" />
     <Build Include="dbo\Tables\Sessions.sql" />
     <Build Include="dbo\Tables\Lecturers.sql" />
@@ -84,6 +83,7 @@
     <Build Include="dbo\StoredProcedures\Users\uspCreateUser.sql" />
     <Build Include="dbo\StoredProcedures\Sessions\uspCreateSession.sql" />
     <Build Include="dbo\StoredProcedures\Verifications\uspCreateVerification.sql" />
-    <Build Include="dbo\StoredProcedures\Verifications\uspCheckVerificationCode.sql" />
+    <Build Include="dbo\StoredProcedures\Users\uspDeleteUser.sql" />
+    <Build Include="dbo\Tables\Addresses.sql" />
   </ItemGroup>
 </Project>
