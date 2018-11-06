@@ -1,46 +1,72 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using IdentityServer4.Services;
+using IdentityServer4.Validation;
+using AuthAPI.UsersRepository;
+using AuthAPI.Services;
+using AuthAPI.Validators;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using AccessCore.Repository;
+using AccessCore.SpExecuters;
 
 namespace AuthAPI
 {
+    /// <summary>
+    /// Class containing start configuration
+    /// </summary>
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private IConfiguration Configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configures services
+        /// This method gets called by the runtime which uses this method to add services to the container.
+        /// </summary>
+        /// <param name="services">Services</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // adding custom repository
+            services.AddScoped<IUserRepository, UserRepository>();
+
+            // adding mvc
+            services.AddMvc();
+
+            // adding custom configurations of Identity Server
+            services.AddIdentityServer()
+                    .AddDeveloperSigningCredential()
+                    .AddInMemoryIdentityResources(Config.GetIdentityResources())
+                    .AddInMemoryApiResources(Config.GetApiResources())
+                    .AddInMemoryClients(Config.GetClients())
+                    .AddProfileService<ProfileService>();
+
+            // adding transients
+            services.AddTransient<IResourceOwnerPasswordValidator, ResourceOwnerPasswordValidator>();
+            services.AddTransient<IProfileService, ProfileService>();
+
+            // adding singletons
+            services.AddSingleton(new DataManager(
+                new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"]),
+                new MapInfo(this.Configuration["Mappers:Users"])));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configures app and environment.
+        /// This method gets called by the runtime which uses this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">App</param>
+        /// <param name="env">Environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
+            app.UseIdentityServer();
             app.UseMvc();
         }
     }
