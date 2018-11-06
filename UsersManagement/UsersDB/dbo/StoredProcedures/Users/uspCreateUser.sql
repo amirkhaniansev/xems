@@ -28,7 +28,9 @@ CREATE PROCEDURE [dbo].[uspCreateUser]
 AS
 	BEGIN
 		IF EXISTS (SELECT [Username] FROM [dbo].[Users] 
-					WHERE [Username] = @username)
+					WHERE [Username] = @username) OR
+			EXISTS (SELECT [EMAIL] FROM [dbo].[Users]
+					 WHERE [Email] = @email)		
 			RETURN 0
 
 		DECLARE @addressId INT
@@ -55,6 +57,7 @@ AS
 						@description,
 						@username,
 						@passwordHash,
+						0,
 						0,
 						GETDATE(),
 						NULL,

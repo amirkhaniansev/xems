@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[Users]
 	[Username]          VARCHAR(30)     NOT NULL,
 	[PasswordHash]      NVARCHAR(200)    NOT NULL,
 	[IsVerified]        BIT             NOT NULL,
+	[IsActive]          BIT				NULL,					
 	[RegisterDate]      DATE            NOT NULL,
 	[VerificationDate]  DATE            NULL,
 	[CurrentProfileId]  INT             NULL,
