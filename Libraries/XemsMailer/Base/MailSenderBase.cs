@@ -11,7 +11,7 @@ namespace XemsMailer.Base
     {
         private readonly NetworkCredential _credentials;
 
-        private readonly SmtpClient _smtpClient;
+        protected readonly SmtpClient _smtpClient;
 
         private readonly string _host;
 
