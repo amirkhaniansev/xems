@@ -3,7 +3,7 @@
 namespace AuthAPI.Models
 {
     /// <summary>
-    /// Class for session
+    /// Class for session information
     /// </summary>
     public class SessionInfo
     {

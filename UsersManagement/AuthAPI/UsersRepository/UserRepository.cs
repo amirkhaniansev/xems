@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AccessCore.Repository;
+using AuthAPI.Globals;
 using AuthAPI.Models;
 
 namespace AuthAPI.UsersRepository

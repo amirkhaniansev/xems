@@ -1,4 +1,5 @@
 ﻿using System;
+using AuthAPI.Globals;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
