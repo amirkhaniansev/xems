@@ -1,6 +1,8 @@
-﻿namespace XemsLogger
+﻿using System;
+
+namespace XemsLogger
 {
-    public interface IXemsLogger
+    public interface IXemsLogger : IDisposable
     {
         void Log(LogInfo logInfo);
 
