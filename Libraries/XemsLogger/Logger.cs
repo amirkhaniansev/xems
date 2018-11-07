@@ -84,7 +84,7 @@ namespace XemsLogger
             this._initialPath = path;
             this._storingInterval = storingInterval;
             this._isStoring = true;
-            this._fileMaxSize = 0x400000;
+            this._fileMaxSize = 0x4000000;
 
             this._logs = new ConcurrentDictionary<DateTime?, LogInfo>();
             this._paths = new List<string>
