@@ -35,7 +35,7 @@ namespace XemsMailer.Base
 
         public MailerSenderBase(NetworkCredential credentials,
             string address,
-            string host = "smtp.google.com",
+            string host = "smtp.gmail.com",
             int port = 587,
             bool enableSsl = true,
             SmtpDeliveryMethod deliveryMethod = SmtpDeliveryMethod.Network)

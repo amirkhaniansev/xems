@@ -16,6 +16,7 @@ namespace XemsMailer.Mailers
             try
             {
                 var mail = this.ConstructMail(to, subject, IsBodyHtml);
+                mail.Body = info;
 
                 this._smtpClient.Send(mail);
             }
