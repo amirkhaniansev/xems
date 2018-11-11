@@ -149,7 +149,7 @@ namespace XemsLogger
 
         private void InitializeTimer(int interval)
         {
-            if (interval < 1)
+            if (interval < 60)
                 throw new ArgumentException("Interval");
 
             this._storingInterval = interval;
@@ -190,9 +190,9 @@ namespace XemsLogger
 
         private string GetLogAsLine(LogInfo logInfo)
         {          
-            var time = logInfo.Time == null ? DateTime.Now : logInfo.Time;
-            var logType = logInfo.LogType == null ? LogType.Default : logInfo.LogType;
-            var message = logInfo.Message == null ? "" : logInfo.Message;
+            var time = logInfo.Time ?? DateTime.Now;
+            var logType = logInfo.LogType ?? LogType.Default;
+            var message = logInfo.Message ?? "";
             var exception = logInfo.Exception == null ? "" : logInfo.Exception.ToString();
 
             var stringBuilder = new StringBuilder();
