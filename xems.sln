@@ -23,13 +23,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xems", "UI\Xems\Xems.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{F2B69650-9F7B-4AF3-A41B-AC657D2E203F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XemsLogger", "Libraries\XemsLogger\XemsLogger.csproj", "{22094085-6575-4984-A480-3A3C74F027B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsLogger", "Libraries\XemsLogger\XemsLogger.csproj", "{22094085-6575-4984-A480-3A3C74F027B9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E37F5EB1-7CC1-4D22-A255-D13DB73BB7FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XemsLoggerTest", "Tests\XemsLoggerTest\XemsLoggerTest.csproj", "{87CC1A5C-E552-4A4B-AA34-235B9F0E53FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsLoggerTest", "Tests\XemsLoggerTest\XemsLoggerTest.csproj", "{87CC1A5C-E552-4A4B-AA34-235B9F0E53FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XemsMailer", "Libraries\XemsMailer\XemsMailer.csproj", "{3609F72A-FB87-49C8-89E9-77B1598F0A3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsMailer", "Libraries\XemsMailer\XemsMailer.csproj", "{3609F72A-FB87-49C8-89E9-77B1598F0A3D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsPasswordHash", "Libraries\XemsPasswordHash\XemsPasswordHash.csproj", "{0541A48A-71DC-4D82-8719-B70999D352DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{3609F72A-FB87-49C8-89E9-77B1598F0A3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3609F72A-FB87-49C8-89E9-77B1598F0A3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3609F72A-FB87-49C8-89E9-77B1598F0A3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0541A48A-71DC-4D82-8719-B70999D352DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0541A48A-71DC-4D82-8719-B70999D352DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0541A48A-71DC-4D82-8719-B70999D352DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0541A48A-71DC-4D82-8719-B70999D352DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{22094085-6575-4984-A480-3A3C74F027B9} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
 		{87CC1A5C-E552-4A4B-AA34-235B9F0E53FA} = {E37F5EB1-7CC1-4D22-A255-D13DB73BB7FA}
 		{3609F72A-FB87-49C8-89E9-77B1598F0A3D} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
+		{0541A48A-71DC-4D82-8719-B70999D352DB} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {508F7CFC-8E46-47B4-9C01-B93072C8F374}
