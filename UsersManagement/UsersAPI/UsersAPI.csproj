@@ -5,13 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AccessCore" Version="1.0.1" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\XemsLogger\XemsLogger.csproj" />
+    <ProjectReference Include="..\..\Libraries\XemsMailer\XemsMailer.csproj" />
+    <ProjectReference Include="..\..\Libraries\XemsPasswordHash\XemsPasswordHash.csproj" />
+    <ProjectReference Include="..\..\Libraries\XemsPasswordHash\XemsPasswordHash.csproj" />
   </ItemGroup>
 
 </Project>

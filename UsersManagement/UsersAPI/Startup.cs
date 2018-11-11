@@ -1,47 +1,101 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Net;
+using AccessCore.Repository;
+using AccessCore.SpExecuters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using XemsLogger;
+using XemsMailer.Mailers;
+using XemsPasswordHash;
 
 namespace UsersAPI
 {
+    /// <summary>
+    /// Startup class for User Management API
+    /// </summary>
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        private IConfiguration Configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json").Build();
 
-        public IConfiguration Configuration { get; }
+        private IConfiguration Credentials = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("MailCredentials.json").Build();
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configures services.
+        /// This method gets called by the runtime which uses this method to add services to the container.
+        /// </summary>
+        /// <param name="services">Services</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            // adding MVC Core,authorization and JSON formatting
+            services.AddMvcCore()
+                    .AddAuthorization()
+                    .AddJsonFormatters();
+
+            // adding authentication info
+            services.AddAuthentication("Bearer")
+                    .AddIdentityServerAuthentication(options =>
+                    {
+                        options.Authority = this.Configuration["Endpoints:AuthAPI"];
+                        options.RequireHttpsMetadata = false;
+                        options.ApiName = "UsersAPI";
+                    });
+
+            // adding policies
+            this.AddPolicies(services);
+
+            // adding globals
+            this.AddGlobals();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configures app and environment.
+        /// This method gets called by the runtime which uses this method to configure the HTTP request pipeline.
+        /// </summary>
+        /// <param name="app">App</param>
+        /// <param name="env">Environment</param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
+        }
+
+        /// <summary>
+        /// Adds policies
+        /// </summary>
+        /// <param name="services">Services</param>
+        private void AddPolicies(IServiceCollection services)
+        {
+            
+        }
+
+        /// <summary>
+        /// Adds globals
+        /// </summary>
+        private void AddGlobals()
+        {
+            Globals.Logger = new Logger(
+                this.Configuration["AppName"], this.Configuration["LogsFile"]);
+
+            Globals.Mailer = new MessageMailer(
+                new NetworkCredential(this.Credentials["Username"], this.Credentials["Password"]),
+                this.Credentials["Username"]);
+
+            Globals.DataManager = new DataManager(
+                new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"]),
+                new MapInfo(this.Configuration["Mappers:Users"]));
+
+            Globals.Hasher = new PasswordHashService();
         }
     }
 }
