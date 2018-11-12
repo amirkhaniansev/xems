@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsMailer", "Libraries\Xem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsPasswordHash", "Libraries\XemsPasswordHash\XemsPasswordHash.csproj", "{0541A48A-71DC-4D82-8719-B70999D352DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordHasherTest", "Tests\PasswordHasherTest\PasswordHasherTest.csproj", "{2F542EC9-C2DF-4698-9C0A-026C727B85E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{0541A48A-71DC-4D82-8719-B70999D352DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0541A48A-71DC-4D82-8719-B70999D352DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0541A48A-71DC-4D82-8719-B70999D352DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{87CC1A5C-E552-4A4B-AA34-235B9F0E53FA} = {E37F5EB1-7CC1-4D22-A255-D13DB73BB7FA}
 		{3609F72A-FB87-49C8-89E9-77B1598F0A3D} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
 		{0541A48A-71DC-4D82-8719-B70999D352DB} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
+		{2F542EC9-C2DF-4698-9C0A-026C727B85E1} = {E37F5EB1-7CC1-4D22-A255-D13DB73BB7FA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {508F7CFC-8E46-47B4-9C01-B93072C8F374}
