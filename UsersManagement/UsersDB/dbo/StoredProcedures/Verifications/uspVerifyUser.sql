@@ -18,10 +18,9 @@
 			BEGIN TRANSACTION VERIFY_TRANSACTION
 				UPDATE [dbo].[Users]
 					SET [VerificationDate] = GETDATE(),
-						[IsVerified] = 1
+						[IsVerified] = 1 WHERE [Id] = @userId
 				UPDATE [dbo].[Verifications]
-					SET [IsVerified] = 1	
+					SET [IsVerified] = 1 WHERE [UserId] = @userId
 			COMMIT TRANSACTION VERIFY_TRANSACTION
-
 			RETURN 5
 		END	
