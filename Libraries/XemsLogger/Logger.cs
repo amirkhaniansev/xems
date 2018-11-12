@@ -112,7 +112,7 @@ namespace XemsLogger
                 };
             }
             else log = logInfo;
-
+            
             this._logs.TryAdd(log.Time, log);
         }
 
@@ -180,6 +180,8 @@ namespace XemsLogger
                     stream.WriteLine(this.GetLogAsLine(log.Value));
                 }
             }
+
+            this.ClearCache();
         }
 
         private void ExecWhenTimerElapses(object sender, ElapsedEventArgs e)
