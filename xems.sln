@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsMailer", "Libraries\Xem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XemsPasswordHash", "Libraries\XemsPasswordHash\XemsPasswordHash.csproj", "{0541A48A-71DC-4D82-8719-B70999D352DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PasswordHasherTest", "Tests\PasswordHasherTest\PasswordHasherTest.csproj", "{2F542EC9-C2DF-4698-9C0A-026C727B85E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PasswordHasherTest", "Tests\PasswordHasherTest\PasswordHasherTest.csproj", "{2F542EC9-C2DF-4698-9C0A-026C727B85E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XemsCustomControls", "UI\XemsCustomControls\XemsCustomControls.csproj", "{9383E14D-10CC-4D84-9595-12EF1B496AAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XemsUserControls", "UI\XemsUserControls\XemsUserControls.csproj", "{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,14 @@ Global
 		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F542EC9-C2DF-4698-9C0A-026C727B85E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9383E14D-10CC-4D84-9595-12EF1B496AAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9383E14D-10CC-4D84-9595-12EF1B496AAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9383E14D-10CC-4D84-9595-12EF1B496AAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9383E14D-10CC-4D84-9595-12EF1B496AAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +105,8 @@ Global
 		{3609F72A-FB87-49C8-89E9-77B1598F0A3D} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
 		{0541A48A-71DC-4D82-8719-B70999D352DB} = {F2B69650-9F7B-4AF3-A41B-AC657D2E203F}
 		{2F542EC9-C2DF-4698-9C0A-026C727B85E1} = {E37F5EB1-7CC1-4D22-A255-D13DB73BB7FA}
+		{9383E14D-10CC-4D84-9595-12EF1B496AAE} = {26353419-C318-48EA-A73E-B2468A17E6F0}
+		{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55} = {26353419-C318-48EA-A73E-B2468A17E6F0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {508F7CFC-8E46-47B4-9C01-B93072C8F374}
