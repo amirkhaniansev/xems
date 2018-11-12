@@ -8,16 +8,21 @@
 
 CREATE PROCEDURE [dbo].[uspCreateVerification]
 	@userId           INT,
-	@verificationCode VARCHAR(100),
-	@creationDate     DATETIME2,
-	@expirationDate   DATETIME2
+	@verificationCode NVARCHAR(100),
+	@creationDate     DATETIME,
+	@expirationDate   DATETIME
 AS
 	BEGIN
+		IF NOT EXISTS (SELECT [Id] FROM [dbo].[Users] 
+			WHERE [Id] = @userId AND [IsVerified] = 0)
+		   RETURN 0
+
 		INSERT INTO [dbo].[Verifications]
 			VALUES (@userId,
 					@verificationCode,
 				    @creationDate,
 					@expirationDate,
 					0)
-		RETURN 0
+
+		RETURN 1
 	END
