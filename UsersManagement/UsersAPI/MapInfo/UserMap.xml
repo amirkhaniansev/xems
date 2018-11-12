@@ -80,6 +80,18 @@
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+
+  <operation name="GetUserById">
+    <spName>uspGetUserById</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>id</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+
   <operation name="AddVerificationKey">
     <spName>uspCreateVerification</spName>
     <parameters>
@@ -102,4 +114,20 @@
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
   </operation>
+
+  <operation name="VerifyUser">
+    <spName>uspVerifyUser</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>VerificationKey</parameterName>
+        <spParameterName>verificationKey</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+
 </operations>
