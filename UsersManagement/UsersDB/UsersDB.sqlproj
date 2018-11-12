@@ -82,9 +82,10 @@
     <Build Include="dbo\StoredProcedures\Lecturers\uspCreateLecturer.sql" />
     <Build Include="dbo\StoredProcedures\Users\uspCreateUser.sql" />
     <Build Include="dbo\StoredProcedures\Sessions\uspCreateSession.sql" />
-    <Build Include="dbo\StoredProcedures\Verifications\uspCreateVerification.sql" />
     <Build Include="dbo\Tables\Addresses.sql" />
     <Build Include="dbo\StoredProcedures\Users\uspGetUserByUsername.sql" />
     <Build Include="dbo\StoredProcedures\Users\uspGetUserById.sql" />
+    <Build Include="dbo\StoredProcedures\Verifications\uspVerifyUser.sql" />
+    <Build Include="dbo\StoredProcedures\Verifications\uspCreateVerification.sql" />
   </ItemGroup>
 </Project>
