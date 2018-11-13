@@ -47,7 +47,7 @@ namespace AuthAPI.Validators
                 if (user != null)
                 {
                     // if password is ok set
-                    if (this.CheckPassword(context.Password,user.Password) && user.IsVerified)
+                    if (this.CheckPassword(context.Password,user.PasswordHash) && user.IsVerified)
                     {
                         context.Result = new GrantValidationResult(
                             subject: user.Id.ToString(),
@@ -64,7 +64,6 @@ namespace AuthAPI.Validators
                 // message about non-existing users
                 context.Result = new GrantValidationResult(
                     TokenRequestErrors.InvalidGrant, Constants.UserNotExist);
-                return;
             }
             // catching exception
             catch (Exception)
@@ -116,7 +115,6 @@ namespace AuthAPI.Validators
             return new Claim[]
             {
                 new Claim("user_id", user.Id.ToString()),
-                new Claim("current_profile",user.CurrentProfileType),
                 new Claim(JwtClaimTypes.Name,user.Username),
             };
         }

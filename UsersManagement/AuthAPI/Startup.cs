@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using AccessCore.Repository;
 using AccessCore.SpExecuters;
+using AuthAPI.Globals;
+using XemsLogger;
 
 namespace AuthAPI
 {
@@ -50,7 +52,12 @@ namespace AuthAPI
             // adding singletons
             services.AddSingleton(new DataManager(
                 new SpExecuter(this.Configuration["ConnectionStrings:UsersDB"]),
-                new MapInfo(this.Configuration["Mappers:Users"])));
+                new MapInfo(this.Configuration["Paths:Users"])));
+
+            services.AddSingleton(new Logger(
+                Constants.AuthAPI,
+                this.Configuration["Paths:Log"],
+                60));
         }
 
         /// <summary>

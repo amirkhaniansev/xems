@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using AccessCore.Repository;
-using Microsoft.AspNetCore.Mvc.Internal;
 using XemsLogger;
 using XemsMailer.Mailers;
 using UsersAPI.Models;
@@ -97,32 +96,27 @@ namespace UsersAPI.Controllers
             {
                 var result = (Error) await this._dm.OperateAsync<Verification, object>(
                     Constants.VerifyUser, verification);
-
-                if (result == Error.VerificationSuccess)
-                    return this.Ok(Constants.UserVerificationSuccess);
-
-                if (result == Error.UserNotFound)
+                
+                switch (result)
                 {
-                    this._logger.Log(Constants.UserNotFoundMessage);
+                    case Error.VerificationSuccess:
+                        return this.Ok(Constants.UserVerificationSuccess);
 
-                    return this.NotFound(Constants.UserNotFoundMessage);
+                    case Error.UserNotFound:
+                        this._logger.Log(Constants.UserNotFoundMessage);
+                        return this.NotFound(Constants.UserNotFoundMessage);
+
+                    case Error.VerificationFail:
+                        this._logger.Log(Constants.InvalidKeyMessage);
+                        return this.BadRequest(Constants.InvalidKeyMessage);
+
+                    case Error.ExpiredKey:
+                        this._logger.Log(Constants.KeyIsExpired);
+                        return this.BadRequest(Constants.KeyIsExpired);
+
+                    default:
+                        return this.BadRequest();
                 }
-
-                if (result == Error.VerificationFail)
-                {
-                    this._logger.Log(Constants.InvalidKeyMessage);
-
-                    return this.BadRequest(Constants.InvalidKeyMessage);
-                }
-
-                if (result == Error.ExpiredKey)
-                {
-                    this._logger.Log(Constants.KeyIsExpired);
-
-                    return this.BadRequest(Constants.KeyIsExpired);
-                }
-               
-                return this.BadRequest();
             }
             catch (Exception ex)
             {

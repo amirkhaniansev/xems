@@ -18,17 +18,12 @@
         /// <summary>
         /// Gets or sets password
         /// </summary>
-        public string Password { get; set; }
+        public string PasswordHash { get; set; }
 
         /// <summary>
         /// Gets or sets Activity
         /// </summary>
-        public bool IsActive { get; set; }
-
-        /// <summary>
-        /// Gets or sets Current Profile Type
-        /// </summary>
-        public string CurrentProfileType { get; set; }
+        public bool IsActive { get; set; } 
 
         /// <summary>
         /// Gets or sets IsVerified
