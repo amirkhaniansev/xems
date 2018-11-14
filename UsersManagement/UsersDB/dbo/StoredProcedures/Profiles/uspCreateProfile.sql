@@ -14,7 +14,7 @@ CREATE PROCEDURE [dbo].[uspCreateProfile]
 AS
 	BEGIN
 		IF EXISTS (SELECT [Type] FROM [dbo].[Profiles] 
-					WHERE [Id] = @userId and [Type] = @type)
+					WHERE [UserId] = @userId and [Type] = @type)
 			RETURN 0
 		
 		DECLARE @profileID INT

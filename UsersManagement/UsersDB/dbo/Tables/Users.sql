@@ -25,6 +25,7 @@ CREATE TABLE [dbo].[Users]
 	[RegisterDate]       DATE            NOT NULL,
 	[VerificationDate]   DATE            NULL,
 	[CurrentProfileId]   INT             NULL,
+	[CurrentProfileType] NVARCHAR(20)    NULL,
 	[AddressId]          INT             NULL
 
 	CONSTRAINT PK_User                  PRIMARY KEY ([Id]),
