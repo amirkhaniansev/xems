@@ -178,4 +178,47 @@
     <returnDataType>Entity</returnDataType>
   </operation>
 
+  <operation name="CreateStudentProfile">
+    <spName>uspCreateStudent</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>CurrentUniversity</parameterName>
+        <spParameterName>currentUniversity</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Occupation</parameterName>
+        <spParameterName>occupation</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Department</parameterName>
+        <spParameterName>department</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>EntranceDate</parameterName>
+        <spParameterName>entranceDate</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+
+  <operation name="GetStudents">
+    <spName>uspGetStudents</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+
+  <operation name="GetStudentByUsername">
+    <spName>uspGetStudentByUsername</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+
 </operations>
