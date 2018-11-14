@@ -329,3 +329,4 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 UsersManagement/UsersAPI/MailCredentials.json
+UsersManagement/AuthAPI/AuthLog.txt
