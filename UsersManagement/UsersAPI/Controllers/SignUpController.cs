@@ -15,20 +15,14 @@ namespace UsersAPI.Controllers
     [ApiController]
     [Route("api/sign-up")]
     [Produces("application/json")]
-    public class SignUpController : ControllerBase
-    {
-        private readonly DataManager _dm;
-
-        private readonly IXemsLogger _logger;
-
+    public class SignUpController : UsersApiBaseController
+    {        
         private readonly PasswordHashService _hasher;
 
         private readonly MessageMailer _mailer;
 
         public SignUpController()
         {
-            this._dm = Globals.DataManager;
-            this._logger = Globals.Logger;
             this._hasher = Globals.Hasher;
             this._mailer = Globals.Mailer;
         }

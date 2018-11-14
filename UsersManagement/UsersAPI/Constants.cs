@@ -19,5 +19,14 @@
         public const string KeyIsExpired = "Verification key is expired.";
         public const string UserVerificationSuccess = "User is successfully verified.";
         public const string VerificationError = "Error occured while verifiying the user.";
+        public const string ForbiddenLectureCreation = "Lecturer profile creation is forbidden due to wrong UserId.";
+        public const string CreateLecturerProfile = "CreateLecturerProfile";
+        public const string LecturerAlreadyExists = "User already has lectuere profile.";
+        public const string InvalidUserId = "User ID cannot be 0.";
+        public const string LecturerCreationUnknownError = "Error occured during creation of lecturer profile.";
+        public const string GetLecturerByUsername = "GetLecturerByUsername";
+        public const string LecturerNotFound = "Lecturer is not found";
+        public const string LecturerSearchError = "Error occured during lecturer search";
+        public const string GetLecturers = "GetLecturers";
     }
 }

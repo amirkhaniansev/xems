@@ -21,5 +21,8 @@
         public const string SessionEndSuccess = "Session is successfully ended";
         public const string SessionEndError = "Session can't be ended";
         public const string EndSession = "EndSession";
+        public const string PasswordValidatedMsg = "User password is successfully validated.";
+        public const string ProfileServiceError = "Error occurred while adding user claims.";
+        public const string IsActiveError = "Error occured while checking activity of the user.";
     }
 }

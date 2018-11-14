@@ -12,19 +12,13 @@ namespace UsersAPI.Controllers
 {
     [ApiController]
     [Produces("application/json")]
-    public class VerificationsController : ControllerBase
+    public class VerificationsController : UsersApiBaseController
     {
-        private readonly IXemsLogger _logger;
-
         private readonly MessageMailer _mailer;
-
-        private readonly DataManager _dm;
-
+        
         public VerificationsController()
         {
-            this._logger = Globals.Logger;
             this._mailer = Globals.Mailer;
-            this._dm = Globals.DataManager;
         }
 
         [HttpPost]

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AuthAPI.Globals;
 using IdentityServer4.Models;
 using IdentityServer4.Services;
 using AuthAPI.UsersRepository;
 using AuthAPI.Validators;
 using AuthAPI.Models;
+using XemsLogger;
 
 namespace AuthAPI.Services
 {
@@ -20,13 +22,19 @@ namespace AuthAPI.Services
         private readonly IUserRepository _userRepository;
 
         /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly IXemsLogger _logger;
+
+        /// <summary>
         /// Creates new instance of 
         /// <see cref="ProfileService"/> with the given user repository.
         /// </summary>
         /// <param name="userRepository">User repository</param>
-        public ProfileService(IUserRepository userRepository)
+        public ProfileService(IUserRepository userRepository, Logger logger)
         {
-           this. _userRepository = userRepository;
+            this._userRepository = userRepository;
+            this._logger = logger;
         }
 
         /// <summary>
@@ -76,7 +84,8 @@ namespace AuthAPI.Services
             }
             catch (Exception ex)
             {
-                //log your error
+                this._logger.Log(LogHelper.CreateLog(
+                    DateTime.Now, LogType.Fatal, Constants.ProfileServiceError, ex));
             }
         }
 
@@ -107,7 +116,8 @@ namespace AuthAPI.Services
             }
             catch (Exception ex)
             {
-                // handle error logging
+                this._logger.Log(LogHelper.CreateLog(
+                    DateTime.Now, LogType.Fatal, Constants.IsActiveError, ex));
             }
         }
     }

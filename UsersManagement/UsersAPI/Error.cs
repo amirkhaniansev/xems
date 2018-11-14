@@ -7,6 +7,7 @@
         UserNotFound = 2,
         VerificationFail = 3,
         ExpiredKey = 4,
-        VerificationSuccess = 5
+        VerificationSuccess = 5,
+        LecturerAlreadyExists = 0
     }
 }

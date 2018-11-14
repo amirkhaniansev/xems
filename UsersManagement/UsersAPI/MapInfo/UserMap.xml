@@ -2,6 +2,7 @@
 <operations
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="MapSchema.xsd">
+
   <operation name="CreateUser">
     <spName>uspCreateUser</spName>
     <parameters>
@@ -128,6 +129,53 @@
       </parameter>
     </parameters>
     <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+
+  <operation name="CreateLecturerProfile">
+    <spName>uspCreateLecturer</spName>
+    <parameters>
+      <parameter>
+        <parameterName>UserId</parameterName>
+        <spParameterName>userId</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>CurrentUniversity</parameterName>
+        <spParameterName>currentUniversity</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Occupation</parameterName>
+        <spParameterName>occupation</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Degree</parameterName>
+        <spParameterName>degree</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>Thesis</parameterName>
+        <spParameterName>thesis</spParameterName>
+      </parameter>
+      <parameter>
+        <parameterName>WorkStartingDate</parameterName>
+        <spParameterName>workStartingDate</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>NoReturnValue</returnDataType>
+  </operation>
+
+  <operation name="GetLecturers">
+    <spName>uspGetLecturers</spName>
+    <returnDataType>Enumerable</returnDataType>
+  </operation>
+
+  <operation name="GetLecturerByUsername">
+    <spName>uspGetLecturerByUsername</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
   </operation>
 
 </operations>

@@ -8,6 +8,7 @@ using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using AuthAPI.UsersRepository;
 using AuthAPI.Models;
+using XemsLogger;
 
 namespace AuthAPI.Validators
 {
@@ -22,13 +23,19 @@ namespace AuthAPI.Validators
         private readonly IUserRepository _userRepository;
 
         /// <summary>
+        /// Logger
+        /// </summary>
+        private readonly IXemsLogger _logger;
+
+        /// <summary>
         /// Constructs new instance of 
         /// <see cref="ResourceOwnerPasswordValidator"/> with the given user repository.
         /// </summary>
         /// <param name="userRepository">User Repository</param>
-        public ResourceOwnerPasswordValidator(IUserRepository userRepository)
+        public ResourceOwnerPasswordValidator(IUserRepository userRepository, Logger logger)
         {
-            this._userRepository = userRepository; 
+            this._userRepository = userRepository;
+            this._logger = logger;
         }
 
         /// <summary>
@@ -53,23 +60,38 @@ namespace AuthAPI.Validators
                             subject: user.Id.ToString(),
                             authenticationMethod: Constants.Custom,
                             claims: GetUserClaims(user));
+
+                        this._logger.Log(LogHelper.CreateLog(
+                            DateTime.Now, LogType.Success, Constants.PasswordValidatedMsg, null));
+
                         return;
                     }
 
                     // otherwise construct error response
                     context.Result = new GrantValidationResult(
                         TokenRequestErrors.InvalidGrant, Constants.IncorrectPassword);
+
+                    this._logger.Log(LogHelper.CreateLog(
+                        DateTime.Now, LogType.Fail, Constants.IncorrectPassword, null));
+
                     return;
                 }
+
                 // message about non-existing users
                 context.Result = new GrantValidationResult(
                     TokenRequestErrors.InvalidGrant, Constants.UserNotExist);
+
+                this._logger.Log(LogHelper.CreateLog(
+                    DateTime.Now, LogType.Fail, Constants.UserNotExist, null));
             }
             // catching exception
-            catch (Exception)
+            catch (Exception ex)
             {
                 context.Result = new GrantValidationResult(
                     TokenRequestErrors.InvalidGrant, Constants.InvalidUsernameOrPassword);
+
+                this._logger.Log(LogHelper.CreateLog(
+                    DateTime.Now, LogType.Fatal, Constants.InvalidUsernameOrPassword, ex));
             }
         }
 
