@@ -28,5 +28,13 @@
         public const string LecturerNotFound = "Lecturer is not found";
         public const string LecturerSearchError = "Error occured during lecturer search";
         public const string GetLecturers = "GetLecturers";
+        public const string ForbiddenStudentCreation = "Student profile creation is forbidden due to wrong UserId.";
+        public const string CreateStudentProfile = "CreateStudentProfile";
+        public const string StudentAlreadyExists = "User already has Student profile.";
+        public const string StudentCreationUnknownError = "Error occured during creation of Student profile.";
+        public const string GetStudentByUsername = "GetStudentByUsername";
+        public const string StudentNotFound = "Student is not found";
+        public const string StudentSearchError = "Error occured during Student search";
+        public const string GetStudents = "GetStudents";
     }
 }

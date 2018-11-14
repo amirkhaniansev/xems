@@ -8,6 +8,7 @@
         VerificationFail = 3,
         ExpiredKey = 4,
         VerificationSuccess = 5,
-        LecturerAlreadyExists = 0
+        LecturerAlreadyExists = 0,
+        StudentAlreadyExists = 0
     }
 }
