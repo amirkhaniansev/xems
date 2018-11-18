@@ -330,3 +330,5 @@ ASALocalRun/
 .mfractor/
 UsersManagement/UsersAPI/MailCredentials.json
 UsersManagement/AuthAPI/AuthLog.txt
+UsersManagement/UsersAPI/logs.txt
+Exams/ExamsAPI/MailCredentials.json
