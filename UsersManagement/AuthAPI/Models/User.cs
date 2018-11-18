@@ -21,6 +21,11 @@
         public string PasswordHash { get; set; }
 
         /// <summary>
+        /// Gets or sets current profile type
+        /// </summary>
+        public string CurrentProfileType { get; set; }
+
+        /// <summary>
         /// Gets or sets Activity
         /// </summary>
         public bool IsActive { get; set; } 

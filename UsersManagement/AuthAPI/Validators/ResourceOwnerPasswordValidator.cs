@@ -137,6 +137,7 @@ namespace AuthAPI.Validators
             return new Claim[]
             {
                 new Claim("user_id", user.Id.ToString()),
+                new Claim("current_profile",user.CurrentProfileType), 
                 new Claim(JwtClaimTypes.Name,user.Username),
             };
         }
