@@ -1,0 +1,9 @@
+Steps for creating ExamsDb in MongoDb Server
+
+0. Install MongoDb.
+1. Go to Mongodb location in your computer.
+2. Run Mongo shell.
+3. Create ExamsDB : use ExamsDB
+4. Create collection of Exams : db.createCollection("Exams")
+5. Create collection of Exam Answers : db.createCollection("ExamAnswers")
+6. Create collection of Exam Results : db.createCollection("ExamResults")

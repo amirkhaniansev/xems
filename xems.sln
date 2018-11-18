@@ -43,6 +43,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exams", "Exams", "{0E083345
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamsAPI", "Exams\ExamsAPI\ExamsAPI.csproj", "{405D81EF-BF2F-4E6F-9754-23302D959132}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MongoDb", "MongoDb", "{CB8D3ABD-283F-4D63-92EB-B6575B5D2924}"
+	ProjectSection(SolutionItems) = preProject
+		Exams\MongoDb\Steps.txt = Exams\MongoDb\Steps.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +121,7 @@ Global
 		{9383E14D-10CC-4D84-9595-12EF1B496AAE} = {26353419-C318-48EA-A73E-B2468A17E6F0}
 		{C6A851A7-7CE8-4418-AC6E-C8DC4782FE55} = {26353419-C318-48EA-A73E-B2468A17E6F0}
 		{405D81EF-BF2F-4E6F-9754-23302D959132} = {0E083345-56FE-48AB-8E4E-BBF3C1CC2FD9}
+		{CB8D3ABD-283F-4D63-92EB-B6575B5D2924} = {0E083345-56FE-48AB-8E4E-BBF3C1CC2FD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {508F7CFC-8E46-47B4-9C01-B93072C8F374}

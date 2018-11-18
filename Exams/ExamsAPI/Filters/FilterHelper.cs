@@ -1,11 +1,26 @@
-﻿using System;
+﻿/* 
+ * GNU General Public License Version 3.0, 29 June 2007
+ * Class of Exams API Filter Helper
+ * Copyright (C) 2018  Sevak Amirkhanian
+ * Email: amirkhanyan.sevak@gmail.com
+ * For full notice please see https://github.com/amirkhaniansev/xems/blob/master/LICENSE.
+ */
+
 using ExamsAPI.Models;
 using MongoDB.Driver;
 
 namespace ExamsAPI.Filters
 {
+    /// <summary>
+    /// Helper class for doing filtering operations
+    /// </summary>
     public static class FilterHelper
     {
+        /// <summary>
+        /// Constructs filter definition from filter.
+        /// </summary>
+        /// <param name="filter">filter</param>
+        /// <returns>filter definition</returns>
         public static FilterDefinition<Exam> ConstructFilterDefinition(ExamFilter filter)
         {
             var fdBuilder = Builders<Exam>.Filter;
@@ -15,7 +30,18 @@ namespace ExamsAPI.Filters
                 fdef = fdBuilder.And(fdef, fdBuilder.Eq(exam => exam.CreatorProfileId, filter.CreatorProfileId));
 
             if (filter.CreatorUserId.HasValue)
-                fdef = fdBuilder.And(fdef, fdBuilder.Eq(exam => exam.CreatorUserId, filter.CreatorUserId));
+            {
+                var hasAccessDef = fdBuilder.Empty;
+
+                hasAccessDef = fdBuilder.And(hasAccessDef, 
+                    fdBuilder.Eq(exam => exam.CreatorUserId, filter.CreatorUserId));
+                hasAccessDef = fdBuilder.Or(hasAccessDef, 
+                    fdBuilder.AnyEq(exam => exam.Modifiers, filter.CreatorUserId.Value));
+                hasAccessDef = fdBuilder.Or(hasAccessDef, 
+                    fdBuilder.AnyEq(exam => exam.Students, filter.CreatorUserId.Value));
+
+                fdef = fdBuilder.And(hasAccessDef, fdef);
+            }
 
             if (filter.Duration.HasValue)
                 fdef = fdBuilder.And(fdef, fdBuilder.Eq(exam => exam.Duration, filter.Duration));

@@ -1,25 +1,29 @@
 ﻿/* 
  * GNU General Public License Version 3.0, 29 June 2007
- * Class of Exams API Test model
+ * Class of Exams API Exam Update information
  * Copyright (C) 2018  Sevak Amirkhanian
  * Email: amirkhanyan.sevak@gmail.com
  * For full notice please see https://github.com/amirkhaniansev/xems/blob/master/LICENSE.
  */
 
-using System;
 using System.Collections.Generic;
 
 namespace ExamsAPI.Models
 {
     /// <summary>
-    /// Model for test
+    /// Model for Exam Update Information
     /// </summary>
-    public class Test
+    public class ExamUpdateInfo
     {
         /// <summary>
-        /// Gets or sets creator id
+        /// Gets or sets exam id
         /// </summary>
-        public int CreatorId { get; set; }
+        public string ExamId { get; set; }
+
+        /// <summary>
+        /// Gets or sets note
+        /// </summary>
+        public string Note { get; set; }
 
         /// <summary>
         /// Gets or sets duration
@@ -27,18 +31,18 @@ namespace ExamsAPI.Models
         public int? Duration { get; set; }
 
         /// <summary>
-        /// Gets or sets point
+        /// Gets or sets tests
         /// </summary>
-        public decimal? Point { get; set; }
+        public List<Test> Tests { get; set; }
 
         /// <summary>
-        /// Gets or sets created date
+        /// Gets or sets modifiers
         /// </summary>
-        public DateTime Created { get; set; }
+        public List<int> Modifiers { get; set; }
 
         /// <summary>
-        /// Gets or sets question
+        /// Gets or sets students
         /// </summary>
-        public List<Question> Questions { get; set; }
+        public List<int> Students { get; set; }
     }
 }

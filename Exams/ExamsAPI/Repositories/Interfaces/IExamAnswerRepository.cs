@@ -1,20 +1,18 @@
 ﻿/* 
  * GNU General Public License Version 3.0, 29 June 2007
- * Enum for Exams API Question types
+ * Interface for Exams API Exam Answer Repository
  * Copyright (C) 2018  Sevak Amirkhanian
  * Email: amirkhanyan.sevak@gmail.com
  * For full notice please see https://github.com/amirkhaniansev/xems/blob/master/LICENSE.
  */
 
-namespace ExamsAPI.Global
+namespace ExamsAPI.Repositories.Interfaces
 {
     /// <summary>
-    /// Enum for question types
+    /// Interface for Exam Answer Repository
     /// </summary>
-    public enum QuestionType
+    public interface IExamAnswerRepository
     {
-        WithVariants,
-        WithWrittenAnswer,
-        WithVariantsAndWrittenAnswer
+        
     }
 }
