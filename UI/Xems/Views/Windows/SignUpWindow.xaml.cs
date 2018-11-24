@@ -10,19 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Xems.ViewModels;
 
-namespace Xems
+namespace Xems.Views.Windows
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SignUpWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SignUpWindow : Window
     {
-        public MainWindow()
+        public SignUpWindow()
         {
             InitializeComponent();
+
+            this.DataContext = new SignUpWindowViewModel();
         }
     }
 }
