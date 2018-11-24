@@ -1,0 +1,98 @@
+﻿<Window x:Class="Xems.Views.Windows.SignInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="Sign In" Height="500" Width="400" ResizeMode="NoResize" 
+        Background="{Binding ThemeColor, UpdateSourceTrigger=PropertyChanged}" 
+        WindowStartupLocation="CenterScreen">
+	<Window.Resources>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<!-- Modify default template, to change triggers -->
+					<ControlTemplate TargetType="{x:Type TextBoxBase}">
+						<Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" >
+							<ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="true">
+								<Setter Property="BorderBrush" Value="White"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</Trigger>
+
+							<Trigger Property="IsMouseOver" Value="true">
+								<Setter Property="BorderBrush" Value="White"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style TargetType="{x:Type PasswordBox}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<!-- Modify default template, to change triggers -->
+					<ControlTemplate TargetType="{x:Type PasswordBox}">
+						<Border x:Name="borders" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" >
+							<ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="true">
+								<Setter Property="BorderBrush" Value="White"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</Trigger>
+
+							<Trigger Property="IsMouseOver" Value="true">
+								<Setter Property="BorderBrush" Value="White"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<Grid>
+		<StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+			<TextBlock TextWrapping="Wrap" Text="Sign In" Foreground="White" FontFamily="Comfortaa" FontSize="40" Margin="0,40,0,0" HorizontalAlignment="Center"/>
+
+			<Label Content="Username" HorizontalAlignment="Center" Margin="0,15,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="White" />
+			<TextBox VerticalContentAlignment="Center" Height="40" 
+                     TextWrapping="Wrap" Width="240" Margin="0,10,0,0" 
+                     FontSize="16" FontFamily="Consolas" BorderBrush="White" 
+                     CaretBrush="White" Foreground="White" SelectionBrush="White" 
+                     Text="{Binding SignInInfo.Username}"/>
+			<Label Content="Password" HorizontalAlignment="Center" Margin="0,5,0,0" FontFamily="Comfortaa" FontSize="18" Foreground="White"/>
+			<PasswordBox VerticalContentAlignment="Center" Height="40"  
+                         Width="240" Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" 
+                         Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White" CaretBrush="White" 
+                         />
+			<Button Name="signInButton"    
+                    Width="120" 
+                    Margin="0,30,0,0" Height="40" 
+                    FontFamily="Comfortaa" FontSize="20" 
+                    FontWeight="Bold" Foreground="White" Background="{x:Null}" BorderBrush="White" BorderThickness="2"
+                    Command="{Binding SignInCommand}" CommandParameter="{Binding SignInInfo}"
+                    >
+				<Button.Content>
+					<TextBlock>
+                        <TextBlock Name="signInText" Text="Sign In" Visibility="{Binding TextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                        <fa:ImageAwesome Name="spinner" Icon="Spinner" Spin="{Binding IsSpinning, UpdateSourceTrigger=PropertyChanged}" SpinDuration="2" 
+                                         HorizontalAlignment="Center" Foreground="White"
+                                         Visibility="{Binding SpinnerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    </TextBlock>
+				</Button.Content>
+			</Button>
+			<TextBlock Margin="0,25,0,0" FontFamily="Comfortaa" FontWeight="Bold" Foreground="White" FontSize="14" TextAlignment="Center">
+                <TextBlock Text="Don't have account?"/>
+                <Hyperlink Foreground="White" Command="{Binding HyperLinkCommand}">
+                    <TextBlock Text="Sign up"/>
+                </Hyperlink>
+            </TextBlock>
+		</StackPanel>
+	</Grid>
+</Window>
