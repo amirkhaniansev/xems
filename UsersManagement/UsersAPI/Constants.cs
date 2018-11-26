@@ -13,6 +13,7 @@
         public const string UserSignUpFail = "Unable to sign up the user";
         public const string UserCreationError = "Error occured while creating the user";
         public const string GetUserById = "GetUserById";
+        public const string GetUserByUsername = "GetUserByUsername";
         public const string VerifyUser = "VerifyUser";
         public const string UserNotFoundMessage = "User is not found.";
         public const string InvalidKeyMessage = "Invalid key is provided.";

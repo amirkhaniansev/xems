@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using UsersAPI.Models;
+using XemsLogger;
 using XemsMailer.Mailers;
 
 namespace UsersAPI.Controllers
@@ -22,27 +24,25 @@ namespace UsersAPI.Controllers
             this._mailer = Globals.Mailer;
         }
 
-        /*[HttpGet("{id:int}")]
-        public async Task<IActionResult> Get(int id)
-        {
-
-        }
-
         [HttpGet("{username}")]
         public async Task<IActionResult> Get(string username)
         {
+            try
+            {
+                var user = await this._dm.OperateAsync<string, User>(Constants.GetUserByUsername, username);
 
+                if (user == null)
+                    return this.NotFound();
+
+                return new JsonResult(user);
+            }
+            catch (Exception ex)
+            {
+                this._logger.Log(LogHelper.CreateLog(DateTime.Now, LogType.Fatal, null, ex));
+
+                return this.BadRequest();
+            }
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get()
-        {
-
-        }
-
-        private async Task<IActionResult> Get<TParameter, TPublic, TPrivate>(string opName, TParameter parameter)
-        {
-
-        }*/
     }
 }

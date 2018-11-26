@@ -93,6 +93,17 @@
     <returnDataType>Entity</returnDataType>
   </operation>
 
+  <operation name="GetUserByUsername">
+    <spName>uspGetUserByUsername</spName>
+    <parameters>
+      <parameter>
+        <parameterName>primitive</parameterName>
+        <spParameterName>username</spParameterName>
+      </parameter>
+    </parameters>
+    <returnDataType>Entity</returnDataType>
+  </operation>
+
   <operation name="AddVerificationKey">
     <spName>uspCreateVerification</spName>
     <parameters>
