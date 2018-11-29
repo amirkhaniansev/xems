@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UsersAPI.Models
+﻿namespace UsersApiConsumer.Models
 {
     public class Student : StudentBase
     {

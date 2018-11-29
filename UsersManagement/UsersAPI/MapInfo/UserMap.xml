@@ -108,8 +108,8 @@
     <spName>uspCreateVerification</spName>
     <parameters>
       <parameter>
-        <parameterName>UserId</parameterName>
-        <spParameterName>userId</spParameterName>
+        <parameterName>Username</parameterName>
+        <spParameterName>username</spParameterName>
       </parameter>
       <parameter>
         <parameterName>VerificationKey</parameterName>
@@ -131,8 +131,8 @@
     <spName>uspVerifyUser</spName>
     <parameters>
       <parameter>
-        <parameterName>UserId</parameterName>
-        <spParameterName>userId</spParameterName>
+        <parameterName>Username</parameterName>
+        <spParameterName>username</spParameterName>
       </parameter>
       <parameter>
         <parameterName>VerificationKey</parameterName>

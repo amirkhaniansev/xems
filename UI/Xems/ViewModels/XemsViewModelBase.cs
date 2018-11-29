@@ -1,4 +1,5 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Media;
 using GalaSoft.MvvmLight;
 
 namespace Xems.ViewModels
@@ -17,6 +18,14 @@ namespace Xems.ViewModels
         public XemsViewModelBase()
         {
             this._themeColor = (Brush)new BrushConverter().ConvertFrom("#FF3580BF");
+        }
+
+        public void ChangeWindows(Window from, Window to)
+        {
+            ((App) App.Current).MainWindow = to;
+
+            to.Show();
+            from.Close();
         }
     }
 }

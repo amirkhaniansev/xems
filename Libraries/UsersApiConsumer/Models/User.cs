@@ -1,4 +1,6 @@
-﻿namespace UsersAPI.Models
+﻿using System;
+
+namespace UsersApiConsumer.Models
 {
     public class User
     {

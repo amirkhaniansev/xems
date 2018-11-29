@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using AuthTokenService;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using UsersAPI.Models;
+using UsersApiConsumer.Models;
 
 namespace UsersApiConsumer.Core
 {
@@ -21,6 +21,8 @@ namespace UsersApiConsumer.Core
         private string _accessToken;
 
         private const string USERS_URI = "api/users";
+
+        private const string SIGN_UP_URI = "api/sign-up";
 
         private const string VERIFICATIONS_URI = "api/verifications";
 
@@ -42,22 +44,27 @@ namespace UsersApiConsumer.Core
 
         public async Task<Response<string>> SignUpUserAsync(UserSignUpInfo userSignUpInfo)
         {
-            return await this.SendNoContentPostRequest(USERS_URI, userSignUpInfo);
-        }
-
-        public async Task<Response<string>> VerifyUserAsync(UserVerificationInfo userVerificationInfo)
-        {
-            return await this.SendNoContentPostRequest(VERIFICATIONS_URI, userVerificationInfo);
-        }
+            return await this.SendPostRequest(SIGN_UP_URI, userSignUpInfo);
+        }        
 
         public async Task<Response<string>> AddLecturerProfileAsync(LecturerBase lecturer)
         {
-            return await this.SendNoContentPostRequest(LECTURERS_URI, lecturer);
+            return await this.SendPostRequest(LECTURERS_URI, lecturer);
         }
 
         public async Task<Response<string>> AddStudentProfileAsync(StudentBase student)
         {
-            return await this.SendNoContentPostRequest(STUDENTS_URI, student);
+            return await this.SendPostRequest(STUDENTS_URI, student);
+        }
+
+        public async Task<Response<string>> AddVerificationKeyAsync(string username)
+        {
+            return await this.SendPostRequest<object>($"{VERIFICATIONS_URI}/{username}");
+        }
+
+        public async Task<Response<string>> VerifyUserAsync(Verification verification)
+        {
+            return await this.SendPutRequest(VERIFICATIONS_URI, verification);
         }
 
         public async Task<Response<User>> GetUserByUsernameAsync(string username)
@@ -78,11 +85,8 @@ namespace UsersApiConsumer.Core
                 this.GetResponseStatus((int)response.StatusCode));
         }
 
-        private async Task<Response<string>> SendNoContentPostRequest<T>(string uri, T data)
-        {
-            if(data == null)
-                throw new ArgumentNullException(nameof(data));
-
+        private async Task<Response<string>> SendPostRequest<T>(string uri, T data = default(T))
+        {           
             var response = await this._client.PostAsync(uri, this.ConstructContent(data));
             
             return new Response<string>(
@@ -90,8 +94,23 @@ namespace UsersApiConsumer.Core
                 this.GetResponseStatus((int)response.StatusCode));
         }
 
+        private async Task<Response<string>> SendPutRequest<T>(string uri, T data)
+        {
+            if(data == null)
+                throw new ArgumentNullException(nameof(data));
+
+            var response = await this._client.PutAsync(uri, this.ConstructContent(data));
+
+            return new Response<string>(
+                await response.Content.ReadAsStringAsync(),
+                this.GetResponseStatus((int)response.StatusCode));
+        }
+
         private StringContent ConstructContent(object data)
         {
+            if (data == null)
+                return null;
+
             var json = JsonConvert.SerializeObject(data);
 
             return new StringContent(json,Encoding.UTF8,APPLICATION_JSON);

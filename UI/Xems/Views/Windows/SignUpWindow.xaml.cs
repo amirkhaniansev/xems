@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Xems.ViewModels;
+using PasswordBox = System.Windows.Controls.PasswordBox;
 
 namespace Xems.Views.Windows
 {
@@ -20,11 +21,23 @@ namespace Xems.Views.Windows
     /// </summary>
     public partial class SignUpWindow : Window
     {
+        private readonly SignUpWindowViewModel _vm;
+
         public SignUpWindow()
         {
             InitializeComponent();
 
-            this.DataContext = new SignUpWindowViewModel();
+            this.DataContext = this._vm = new SignUpWindowViewModel();
+        }
+
+        private void Password_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            this._vm.UserSignUpInfo.Password = ((PasswordBox) sender).Password;
+        }
+
+        private void ConfirmPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            this._vm.UserSignUpInfo.ConfirmPassword = ((PasswordBox) sender).Password;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UsersAPI.Models
+namespace UsersApiConsumer.Models
 {
     public class Profile : ProfileBase
     {

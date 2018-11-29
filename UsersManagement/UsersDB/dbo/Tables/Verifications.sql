@@ -9,7 +9,7 @@
 CREATE TABLE [dbo].[Verifications]
 (
 	[Id]                BIGINT              NOT NULL	IDENTITY (1,1),
-	[UserId]            INT                 NOT NULL,
+	[Username]          VARCHAR(30)                 NOT NULL,
 	[VerificationCode]  NVARCHAR(100)        NOT NULL,
 	[CreationDate]      DATETIME           NOT NULL,
 	[ExpirationDate]    DATETIME           NOT NULL,

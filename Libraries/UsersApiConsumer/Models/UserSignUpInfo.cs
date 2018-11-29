@@ -1,11 +1,9 @@
 ﻿using System;
 
-namespace UsersAPI.Models
+namespace UsersApiConsumer.Models
 {
     public class UserSignUpInfo : User
-    {       
-        public DateTime BirthDate { get; set; }
-
+    {   
         public string Phone { get; set; }
         
         public string Profession { get; set; }

@@ -16,22 +16,15 @@ using Xems.ViewModels;
 namespace Xems.Views.Windows
 {
     /// <summary>
-    /// Interaction logic for SignInWindow.xaml
+    /// Interaction logic for ConfirmationWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window
+    public partial class ConfirmationWindow : Window
     {
-        private readonly SignInWindowViewModel _vm;
-
-        public SignInWindow()
+        public ConfirmationWindow(ConfirmationWindowViewModel vm)
         {
             InitializeComponent();
 
-            this.DataContext = this._vm = new SignInWindowViewModel();
-        }
-
-        private void PasswordBox_OnPasswordChanged(object sender, RoutedEventArgs e)
-        {
-            this._vm.SignInInfo.Password = ((PasswordBox) sender).Password;
+            this.DataContext = vm;
         }
     }
 }

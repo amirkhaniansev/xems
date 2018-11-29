@@ -70,13 +70,13 @@
 			<PasswordBox VerticalContentAlignment="Center" Height="40"  
                          Width="240" Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" 
                          Background="{x:Null}" BorderBrush="White" Foreground="White" SelectionBrush="White" CaretBrush="White" 
-                         />
+                         PasswordChanged="PasswordBox_OnPasswordChanged"/>
 			<Button Name="signInButton"    
                     Width="120" 
                     Margin="0,30,0,0" Height="40" 
                     FontFamily="Comfortaa" FontSize="20" 
                     FontWeight="Bold" Foreground="White" Background="{x:Null}" BorderBrush="White" BorderThickness="2"
-                    Command="{Binding SignInCommand}" CommandParameter="{Binding SignInInfo}"
+                    Command="{Binding SignInCommand}"
                     >
 				<Button.Content>
 					<TextBlock>

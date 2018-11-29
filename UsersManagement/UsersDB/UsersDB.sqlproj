@@ -92,4 +92,7 @@
     <Build Include="dbo\StoredProcedures\Students\uspGetStudents.sql" />
     <Build Include="dbo\StoredProcedures\Students\uspGetStudentByUsername.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="UsersDB.refactorlog" />
+  </ItemGroup>
 </Project>

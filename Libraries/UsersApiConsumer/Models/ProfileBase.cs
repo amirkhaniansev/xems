@@ -1,4 +1,4 @@
-﻿namespace UsersAPI.Models
+﻿namespace UsersApiConsumer.Models
 {
     public class ProfileBase
     {

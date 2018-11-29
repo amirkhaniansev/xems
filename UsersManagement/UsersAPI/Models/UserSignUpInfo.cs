@@ -2,7 +2,7 @@
 
 namespace UsersAPI.Models
 {
-    public class UserSignUpInfo : User
+    public class UserSignUpInfo 
     {       
         public DateTime BirthDate { get; set; }
 
@@ -13,6 +13,18 @@ namespace UsersAPI.Models
         public string Description { get; set; }
 
         public string Password { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string MiddleName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Username { get; set; }
+
+        public string Gender { get; set; }
+        
+        public string Email { get; set; }
 
         public string Continent { get; set; }
 

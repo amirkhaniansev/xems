@@ -22,17 +22,17 @@ namespace UsersAPI.Controllers
         }
 
         [HttpPost]
-        [Route("api/verifications/{id}")]
-        public async Task<IActionResult> Post(int id)
+        [Route("api/verifications/{username}")]
+        public async Task<IActionResult> Post(string username)
         {
-            if (id == 0)
+            if (username == null)
                 return this.NotFound();
 
             try
             {
                 var userVerificationInfo = new UserVerificationInfo
                 {
-                    UserId = id,
+                    Username = username,
                     CreationDate = DateTime.Now,
                     ExpirationDate = DateTime.Now.AddHours(2)
                 };
@@ -59,8 +59,8 @@ namespace UsersAPI.Controllers
 
                 if (result == Error.VerificationCodeCreationSuccess)
                 {
-                    var user = (User) await this._dm.OperateAsync<int, User>(
-                        Constants.GetUserById, userVerificationInfo.UserId);
+                    var user = (User) await this._dm.OperateAsync<string, User>(
+                        Constants.GetUserByUsername, userVerificationInfo.Username);
 
                     await this._mailer.SendAsync(
                         user.Email, Constants.VerificationSubject, false, userVerificationInfo.VerificationKey);
@@ -83,7 +83,7 @@ namespace UsersAPI.Controllers
         [Route("api/verifications")]
         public async Task<IActionResult> Put([FromBody]Verification verification)
         {
-            if (verification.UserId == 0)
+            if (verification.Username == null)
                 return this.NotFound();
 
             try

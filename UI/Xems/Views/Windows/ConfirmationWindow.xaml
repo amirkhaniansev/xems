@@ -1,0 +1,58 @@
+﻿<Window x:Class="Xems.Views.Windows.ConfirmationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="Confirmation" Height="320" Width="360" 
+        Background="{Binding ThemeColor, UpdateSourceTrigger=PropertyChanged}" 
+        ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+	<Window.Resources>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="Template">
+				<Setter.Value>
+					<!-- Modify default template, to change triggers -->
+					<ControlTemplate TargetType="{x:Type TextBoxBase}">
+						<Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" >
+							<ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsFocused" Value="true">
+								<Setter Property="BorderBrush" Value="White"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</Trigger>
+
+							<Trigger Property="IsMouseOver" Value="true">
+								<Setter Property="BorderBrush" Value="White"/>
+								<Setter Property="BorderThickness" Value="2"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Top">
+		<TextBlock Text="Confirmation" HorizontalAlignment="Center" Margin="0,20,0,0" Foreground="White" FontFamily="Comfortaa" FontSize="40"/>
+		<Label Content="Enter Code" Foreground="White" FontSize="18" FontFamily="Comfortaa" Margin="0,20,0,0" HorizontalAlignment="Center" />
+		<TextBox Padding="2" VerticalContentAlignment="Center" 
+                 Height="40" TextWrapping="Wrap" Width="240" 
+                 Margin="0,10,0,0" FontSize="16" FontFamily="Consolas" 
+                 BorderBrush="White" CaretBrush="White" 
+                 Foreground="White" SelectionBrush="White" 
+                 Text="{Binding Verification.VerificationKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+		<Button BorderThickness="2"  Background="{x:Null}" 
+                BorderBrush="White" Height="40" Width="147" FontFamily="Comfortaa" FontSize="20" Margin="0,30,0,0" 
+                Command="{Binding VerifyCommand}">
+			<Button.Content>
+				<TextBlock>
+                        <TextBlock Text="Verify" Visibility="{Binding TextVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                        <fa:ImageAwesome Name="spinner" Icon="Spinner" Spin="{Binding IsSpinning, UpdateSourceTrigger=PropertyChanged}" SpinDuration="2" 
+                                         HorizontalAlignment="Center" Foreground="White"
+                                         Visibility="{Binding SpinnerVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+                    </TextBlock>
+			</Button.Content>
+		</Button>
+	</StackPanel>
+</Window>

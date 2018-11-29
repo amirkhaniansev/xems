@@ -130,7 +130,7 @@ namespace AuthTokenService
             // getting response
             var response = await this._tokenClient.RequestResourceOwnerPasswordAsync(
                 username,password,
-                "offline_access UserManagementAPI MedicineAPI RecipeAPI InstitutionsAPI");
+                "offline_access UsersAPI ExamsAPI");
             
             if(response.IsError)
             {

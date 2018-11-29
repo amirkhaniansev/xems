@@ -61,6 +61,24 @@ namespace Xems.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Username or Password.
+        /// </summary>
+        internal static string InvalidCredentials {
+            get {
+                return ResourceManager.GetString("InvalidCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Verification Code.
+        /// </summary>
+        internal static string InvalidVerificationCode {
+            get {
+                return ResourceManager.GetString("InvalidVerificationCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to start..
         /// </summary>
         internal static string UnableToStart {
