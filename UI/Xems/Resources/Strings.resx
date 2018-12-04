@@ -123,6 +123,15 @@
   <data name="InvalidVerificationCode" xml:space="preserve">
     <value>Invalid Verification Code</value>
   </data>
+  <data name="LecturerAddSuccess" xml:space="preserve">
+    <value>Lecturer profile is successfully added.</value>
+  </data>
+  <data name="SignOutFail" xml:space="preserve">
+    <value>Unable to sign out.</value>
+  </data>
+  <data name="StudentAddSuccess" xml:space="preserve">
+    <value>Student profile is successfully added.</value>
+  </data>
   <data name="UnableToStart" xml:space="preserve">
     <value>Unable to start.</value>
   </data>

@@ -8,12 +8,15 @@ namespace Xems.Models
     {        
         public string ConfirmPassword { get; set; }
 
-        public int Year { get; set; }
+        public int? Year { get; set; }
 
-        public int Month { get; set; }
+        public int? Month { get; set; }
 
-        public int Day { get; set; }
+        public int? Day { get; set; }
 
-        public DateTime Birthdate => new DateTime(this.Year, this.Month, this.Day);
+        public DateTime Birthdate => new DateTime(
+                    this.Year ?? 1900,
+                    this.Month ?? 1,
+                    this.Day ?? 1);
     }
 }

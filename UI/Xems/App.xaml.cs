@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using UsersApiConsumer.Core;
 using Xems.Resources;
 using Xems.Views.Windows;
@@ -89,11 +90,14 @@ namespace Xems
 
                     XemsUser.Default.Username = user.Username;
                     XemsUser.Default.CurrentProfile = user.CurrentProfileType;
+                    XemsUser.Default.FirstName = user.FirstName;
+                    XemsUser.Default.LastName = user.LastName;
+                    XemsUser.Default.Id = user.Id;
                     XemsUser.Default.Save();
 
                     new MainWindow().Show();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     XemsMsgBox.Show(Strings.UnknownError);
                 }
@@ -135,5 +139,12 @@ namespace Xems
 
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, Int32 nCmdShow);
+
+        private void App_OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        {
+            e.Handled = true;
+
+            XemsMsgBox.Show(Strings.UnknownError);
+        }
     }
 }

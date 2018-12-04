@@ -10,27 +10,22 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Xems.ViewModels;
 
-namespace Xems.Views.Windows
+namespace Xems.Views.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddStudentPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddStudentPage : Page
     {
-        public MainWindow()
+        public AddStudentPage()
         {
             InitializeComponent();
 
-            this.DataContext = new MainWindowViewModel();
-        }
-
-        private void MainWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if(e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+            this.DataContext = new AddStudentViewModel();
         }
     }
 }

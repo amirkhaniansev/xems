@@ -82,5 +82,41 @@ namespace Xems {
                 this["Theme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string FirstName {
+            get {
+                return ((string)(this["FirstName"]));
+            }
+            set {
+                this["FirstName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastName {
+            get {
+                return ((string)(this["LastName"]));
+            }
+            set {
+                this["LastName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Id {
+            get {
+                return ((int)(this["Id"]));
+            }
+            set {
+                this["Id"] = value;
+            }
+        }
     }
 }

@@ -14,11 +14,11 @@ CREATE PROCEDURE [dbo].[uspCreateUser]
 	@email		   NVARCHAR(100),
 	@phone		   NVARCHAR(100),
 	@gender		   CHAR(1),
-	@profession    NVARCHAR(100),
-	@description   NVARCHAR(1000),
+	@profession    NVARCHAR(100) = N' ',
+	@description   NVARCHAR(1000) = N' ',
 	@username      varchar(30),
 	@passwordHash  NVARCHAR(200),
-	@continent     NVARCHAR(100),
+	@continent     NVARCHAR(100) = N' ',
 	@country       NVARCHAR(100),
 	@state         NVARCHAR(100),
 	@cityOrVillage NVARCHAR(100),
@@ -62,6 +62,7 @@ AS
 						GETDATE(),
 						NULL,
 						NULL,
+						N' ',
 						@addressId
 						)
 			SET @userId = SCOPE_IDENTITY()

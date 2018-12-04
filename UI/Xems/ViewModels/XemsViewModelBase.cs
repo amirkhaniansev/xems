@@ -7,7 +7,9 @@ namespace Xems.ViewModels
     public class XemsViewModelBase : ViewModelBase
     {
         private Brush _themeColor;
-        
+
+        private App _app;
+
         public Brush ThemeColor
         {
             get => this._themeColor;
@@ -15,8 +17,11 @@ namespace Xems.ViewModels
             set => this.Set("ThemeColor", ref this._themeColor, value);
         }
 
+        public App App => this._app;
+
         public XemsViewModelBase()
         {
+            this._app = (App) App.Current;
             this._themeColor = (Brush)new BrushConverter().ConvertFrom("#FF3580BF");
         }
 

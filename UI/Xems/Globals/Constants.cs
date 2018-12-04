@@ -17,5 +17,8 @@
         public const string Verification = "Verification";
         public const string Male = "M";
         public const string Female = "F";
+        public const string FrameContent = "FrameContent";
+        public const string Lecturer = "Lecturer";
+        public const string Student = "Student";
     }
 }

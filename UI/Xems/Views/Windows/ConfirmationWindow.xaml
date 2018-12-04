@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Confirmation" Height="320" Width="360" 
         Background="{Binding ThemeColor, UpdateSourceTrigger=PropertyChanged}" 
-        ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        >
 	<Window.Resources>
 		<Style TargetType="{x:Type TextBox}">
 			<Setter Property="Template">

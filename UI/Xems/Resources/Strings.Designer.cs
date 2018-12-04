@@ -79,6 +79,33 @@ namespace Xems.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lecturer profile is successfully added..
+        /// </summary>
+        internal static string LecturerAddSuccess {
+            get {
+                return ResourceManager.GetString("LecturerAddSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to sign out..
+        /// </summary>
+        internal static string SignOutFail {
+            get {
+                return ResourceManager.GetString("SignOutFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student profile is successfully added..
+        /// </summary>
+        internal static string StudentAddSuccess {
+            get {
+                return ResourceManager.GetString("StudentAddSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to start..
         /// </summary>
         internal static string UnableToStart {

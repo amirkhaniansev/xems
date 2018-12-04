@@ -144,10 +144,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AddLecturerViewModel.cs" />
+    <Compile Include="ViewModels\AddStudentViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationWindowViewModel.cs" />
+    <Compile Include="ViewModels\LoadablePageViewModel.cs" />
     <Compile Include="ViewModels\LoadableWindowViewModel.cs" />
     <Compile Include="ViewModels\SignInWindowViewModel.cs" />
     <Compile Include="ViewModels\SignUpWindowViewModel.cs" />
+    <Compile Include="Views\Pages\AddLecturerPage.xaml.cs">
+      <DependentUpon>AddLecturerPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\AddStudentPage.xaml.cs">
+      <DependentUpon>AddStudentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Windows\ConfirmationWindow.xaml.cs">
       <DependentUpon>ConfirmationWindow.xaml</DependentUpon>
     </Compile>
@@ -214,6 +223,14 @@
     <Resource Include="Icons\xems-icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Pages\AddLecturerPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\AddStudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Windows\ConfirmationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,7 +254,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Controls\" />
-    <Folder Include="Views\Pages\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\lecturer-icon.png" />

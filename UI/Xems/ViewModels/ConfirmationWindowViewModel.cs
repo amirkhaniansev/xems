@@ -58,7 +58,7 @@ namespace Xems.ViewModels
                     return;
                 }
                 
-                this.ChangeWindows(app.MainWindow, new MainWindow());
+                this.ChangeWindows(app.MainWindow, new SignInWindow());
             }
             catch (Exception)
             {

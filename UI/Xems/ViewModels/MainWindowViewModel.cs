@@ -1,9 +1,14 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
+using AuthTokenService;
 using ControlzEx;
 using GalaSoft.MvvmLight.CommandWpf;
 using MaterialDesignThemes.Wpf;
 using Xems.Globals;
+using Xems.Resources;
+using Xems.Views.Pages;
+using Xems.Views.Windows;
 
 namespace Xems.ViewModels
 {
@@ -23,6 +28,8 @@ namespace Xems.ViewModels
 
         private PackIconKind _windowStateIcon;
 
+        private object _frameContent;
+
         private ICommand _openMenuCommand;
 
         private ICommand _closeMenuCommand;
@@ -32,6 +39,12 @@ namespace Xems.ViewModels
         private ICommand _windowStateCommand;
 
         private ICommand _minimizeCommand;
+
+        private ICommand _signOutCommand;
+
+        private ICommand _openAddLecturer;
+
+        private ICommand _openAddStudent;
 
         public string Name
         {
@@ -82,6 +95,13 @@ namespace Xems.ViewModels
             set => this.Set(Constants.WindowStateIcon, ref this._windowStateIcon, value);
         }
 
+        public object FrameContent
+        {
+            get => this._frameContent;
+
+            set => this.Set(Constants.FrameContent, ref this._frameContent, value);
+        }
+
         public ICommand OpenMenuCommand => this._openMenuCommand;
 
         public ICommand CloseMenuCommand => this._closeMenuCommand;
@@ -92,10 +112,16 @@ namespace Xems.ViewModels
 
         public ICommand WindowMinimizeCommand => this._minimizeCommand;
 
+        public ICommand SignOutCommand => this._signOutCommand;
+
+        public ICommand OpenAddLecturerCommand => this._openAddLecturer;
+
+        public ICommand OpenAddStudentCommand => this._openAddStudent;
+
         public MainWindowViewModel()
         {
-            this.Name = "Sevak";
-            this._currentProfileType = "Student";
+            this.Name = XemsUser.Default.Username;
+            this.CurrentProfileType = XemsUser.Default.CurrentProfile;
             this._profilePhotoUrl = "..//..//DSC_1769.JPG";
             this._windowStateIcon = PackIconKind.WindowMaximize;
 
@@ -103,9 +129,15 @@ namespace Xems.ViewModels
                 () => this.SetMenuVisibilities(Visibility.Visible,Visibility.Collapsed));
             this._openMenuCommand = new RelayCommand(
                 () => this.SetMenuVisibilities(Visibility.Collapsed, Visibility.Visible));
+            this._openAddLecturer = new RelayCommand(
+                () => this.FrameContent = new AddLecturerPage());
+            this._openAddStudent = new RelayCommand(
+                () => this.FrameContent = new AddStudentPage());
+
             this._windowStateCommand = new RelayCommand(this.ChangeWindowState);
             this._minimizeCommand = new RelayCommand(() => this.WindowState = WindowState.Minimized);
             this._exitCommand = new RelayCommand(Application.Current.Shutdown);
+            this._signOutCommand = new RelayCommand(this.SignOutExecute);
         }
 
         private void SetMenuVisibilities(Visibility openMenuVisibility, Visibility closeMenuVisibility)
@@ -125,6 +157,30 @@ namespace Xems.ViewModels
             {
                 this.WindowState = WindowState.Maximized;
                 this.WindowStateIcon = PackIconKind.WindowRestore;
+            }
+        }
+
+        private async void SignOutExecute()
+        {
+            try
+            {
+                var app = (App) App.Current;
+
+                var response = await app.TokenProvider.SignOutAsync();
+
+                if (response == TokenStatus.Error)
+                {
+                    XemsMsgBox.Show(Strings.SignOutFail);
+                    return;
+                }
+
+                XemsUser.Default.Reset();
+
+                this.ChangeWindows(app.MainWindow, new SignInWindow());
+            }
+            catch (Exception)
+            {
+                XemsMsgBox.Show(Strings.UnknownError);
             }
         }
             

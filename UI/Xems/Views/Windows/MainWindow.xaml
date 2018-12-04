@@ -7,7 +7,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
 		Title="Xems"
         Height="600" Width="1024" WindowStyle="None" WindowStartupLocation="CenterScreen"
-        WindowState="{Binding WindowState}">
+        WindowState="{Binding WindowState}"
+        MouseDown="MainWindow_OnMouseDown">
 
 	<WindowChrome.WindowChrome>
 		<WindowChrome CaptionHeight="0"/>
@@ -115,10 +116,34 @@
 			</StackPanel.RenderTransform>
 			
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center" Margin="50">
-				<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" 
-				        BorderBrush="{x:Null}" Padding="0" Width="50" Height="50" Margin="10">
-					<materialDesign:PackIcon Kind="Settings" Width="40" Height="40"/>
-				</Button>
+				<Menu Background="Transparent" FlowDirection="LeftToRight" Width="50" Height="50">
+					<MenuItem  FontFamily="Comfortaa" Foreground="White"  Width="50" Height="50"                              FontSize="14" HorizontalAlignment="Right" Name="Menu">
+						<MenuItem.Header>
+							<materialDesign:PackIcon Kind="Menu" Width="40" Height="40"/>
+						</MenuItem.Header>
+						<MenuItem Name="profiles" Header="Profiles" Background="#FF3580BF" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+							<MenuItem Name="add"  Header="Add profile" Background="#FF3580BF" Foreground="White" FontFamily="Comfortaa" FontSize="18">
+								<MenuItem Header="Lecturer" Background="#FF3580BF" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Command="{Binding OpenAddLecturerCommand}"/>
+								<MenuItem Header="Student" Background="#FF3580BF" Foreground="White" FontFamily="Comfortaa" FontSize="18"
+                                          Command="{Binding OpenAddStudentCommand}"/>
+							</MenuItem>
+						</MenuItem>
+
+						<MenuItem Header="Language" Background="#FF3580BF" Foreground="White"
+                                  FontFamily="Comfortaa" FontSize="18">
+							<MenuItem Name="hy_item" Header="Հայերեն" Background="#FF3580BF" Foreground="White"
+                                      FontFamily="Comfortaa" FontSize="18" Tag="hy"
+                                      Command="{Binding ChangeLangCommand}"
+                                      CommandParameter="{Binding ElementName=hy_item,Path=Tag}"/>
+							<MenuItem Name="en_item" Header="English" Background="#FF3580BF" Foreground="White"
+                                      FontFamily="Comfortaa" FontSize="18" Tag="en" Command="{Binding ChangeLangCommand}"
+                                      CommandParameter="{Binding ElementName=en_item, Path=Tag}"/>
+						</MenuItem>
+					</MenuItem>
+
+				</Menu>
+
 				<Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
 				        BorderBrush="{x:Null}" Padding="0" Width="80" Height="80" Margin="10" RenderTransformOrigin="0.5,0.5">
 					<Button.RenderTransform>
@@ -137,7 +162,7 @@
 					<materialDesign:PackIcon Kind="InformationOutline" Width="40" Height="40"/>
 				</Button>
 			</StackPanel>
-			
+
 			<ListView>
 				<ListViewItem x:Name="listViewItem" Height="60" RenderTransformOrigin="0.5,0.5">
 					<ListViewItem.RenderTransform>
@@ -226,8 +251,6 @@
 				<ColumnDefinition Width="300"/>
 			</Grid.ColumnDefinitions>
 
-			<Frame Grid.Column="0"/>
-
 			<Grid Grid.Column="1" Background="#FF3580BF">
 				<Image Height="150" VerticalAlignment="Top" Source="../../Icons/back.jpg" Stretch="UniformToFill"/>
 				<Ellipse Height="100" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20 100" Stroke="White">
@@ -247,11 +270,6 @@
 							<RowDefinition Height="30"/>
 							<RowDefinition Height="30"/>
 						</Grid.RowDefinitions>
-						<TextBlock Text="FOLLOWERS" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5"/>
-						<TextBlock Text="1.5K" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0"/>
-
-						<TextBlock Text="FOLLOWING" VerticalAlignment="Bottom" Foreground="#FFFBFBFB" Margin="5,0,5,5" Grid.Column="1"/>
-						<TextBlock Text="2.3K" VerticalAlignment="Top" Foreground="#FFFBFBFB" Grid.Row="1" Margin="10 0" Grid.Column="1"/>
 					</Grid>
 
 					<TextBlock TextWrapping="Wrap" Margin="10" Foreground="#FFFBFBFB" FontSize="14"/>
@@ -259,47 +277,61 @@
 			</Grid>
 			<Grid>
 				<Grid.RowDefinitions>
-					<RowDefinition Height="40"/>
 					<RowDefinition Height="50"/>
 					<RowDefinition Height="*"/>
 				</Grid.RowDefinitions>
 
-				<Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" 
-				        Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" 
+				<Grid Grid.Row="0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="50"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" 
+				        Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" Grid.Column="0"
 				        HorizontalAlignment="Left" Margin="5"
 				        Command="{Binding CloseMenuCommand}"
 				        Visibility="{Binding CloseMenuVisibility,UpdateSourceTrigger=PropertyChanged}">
-					<materialDesign:PackIcon Kind="Menu" Foreground="#FF3580BF"/>
-				</Button>
-				<Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
+						<materialDesign:PackIcon Kind="Menu" Foreground="#FF3580BF"/>
+					</Button>
+					<Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" 
 				        Width="30" Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" 
-				        HorizontalAlignment="Left" Margin="5"
+				        HorizontalAlignment="Left" Margin="5" Grid.Column="0"
 				        Command="{Binding OpenMenuCommand}"
 				        Visibility="{Binding OpenMenuVisibility, UpdateSourceTrigger=PropertyChanged}">
-					<Image Source="../../Icons/xems-icon.ico"/>
-				</Button>
-				<TextBlock Text=" XEMS" Foreground="#FF3580BF" FontSize="20" FontWeight="Bold"  Grid.Row="1"/>
+						<Image Source="../../Icons/xems-icon.ico"/>
+					</Button>
+					<TextBlock Text=" XEMS" Foreground="#FF3580BF" FontSize="20" FontWeight="Bold"  Grid.Column="1" Margin="8"/>
+				</Grid>
+				<Frame Grid.Row="1" 
+				       Content="{Binding FrameContent, UpdateSourceTrigger=PropertyChanged}"/>
+
 			</Grid>
 		</Grid>
-		<StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
-			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" 
+		<StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right">
+			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" 
 			        Background="{x:Null}" BorderBrush="{x:Null}">
 				<materialDesign:PackIcon Kind="Bell"/>
 			</Button>
-			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" 
+
+			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" 
+			        Background="{x:Null}" BorderBrush="{x:Null}"
+			        Command="{Binding SignOutCommand}">
+				<materialDesign:PackIcon Kind="Logout"/>
+			</Button>
+			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" 
 			        Background="{x:Null}" BorderBrush="{x:Null}"
 			        Command="{Binding WindowMinimizeCommand}">
 				<materialDesign:PackIcon Kind="WindowMinimize"/>
 			</Button>
-			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="30" Padding="0" 
+			<Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" Height="50" Padding="0" 
 			        Background="{x:Null}" BorderBrush="{x:Null}"
 			        Command="{Binding WindowStateCommand}">
 				<materialDesign:PackIcon Kind="{Binding WindowStateIcon,UpdateSourceTrigger=PropertyChanged}"/>
 			</Button>
-			<Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" 
-			        Height="30" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
+			<Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="50" 
+			        Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}"
 			        Command="{Binding ExitCommand}">
-				<materialDesign:PackIcon Kind="Power"/>
+				<materialDesign:PackIcon Kind="WindowClose"/>
 			</Button>
 		</StackPanel>
 	</Grid>
