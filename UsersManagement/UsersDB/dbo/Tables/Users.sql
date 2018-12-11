@@ -19,9 +19,9 @@ CREATE TABLE [dbo].[Users]
 	[Profession]         NVARCHAR(100)   NULL,
 	[Description]        NVARCHAR(1000)  NULL,
 	[Username]           VARCHAR(30)     NOT NULL,
-	[PasswordHash]       NVARCHAR(200)    NOT NULL,
+	[PasswordHash]       NVARCHAR(200)   NOT NULL,
 	[IsVerified]         BIT             NOT NULL,
-	[IsActive]           BIT				NULL,					
+	[IsActive]           BIT	     NULL,					
 	[RegisterDate]       DATE            NOT NULL,
 	[VerificationDate]   DATE            NULL,
 	[CurrentProfileId]   INT             NULL,
@@ -29,6 +29,6 @@ CREATE TABLE [dbo].[Users]
 	[AddressId]          INT             NULL
 
 	CONSTRAINT PK_User                  PRIMARY KEY ([Id]),
-	CONSTRAINT FK_User_Address          FOREIGN KEY ([AddressId])		 REFERENCES [dbo].[Addresses]([Id]),
+	CONSTRAINT FK_User_Address          FOREIGN KEY ([AddressId])        REFERENCES [dbo].[Addresses]([Id]),
 	CONSTRAINT FK_User_Current_Profile  FOREIGN KEY ([CurrentProfileId]) REFERENCES [dbo].[Profiles]([Id])
 )
