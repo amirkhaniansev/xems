@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight.CommandWpf;
 using UsersApiConsumer.Core;
 using UsersApiConsumer.Models;
 using Xems.Globals;
-using Xems.Resources;
 using Xems.Views.Windows;
 
 namespace Xems.ViewModels
@@ -54,7 +53,7 @@ namespace Xems.ViewModels
 
                 if (response.ResponseStatus != ResponseStatus.Success)
                 {
-                    XemsMsgBox.Show(Strings.InvalidVerificationCode);
+                    XemsMsgBox.Show("Invalid verification code");
                     return;
                 }
                 
@@ -62,7 +61,7 @@ namespace Xems.ViewModels
             }
             catch (Exception)
             {
-                XemsMsgBox.Show(Strings.UnknownError);
+                XemsMsgBox.Show("Unknown error");
             }
             finally
             {

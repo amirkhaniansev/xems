@@ -139,14 +139,10 @@
     <Compile Include="Globals\Constants.cs" />
     <Compile Include="Models\SignInInfo.cs" />
     <Compile Include="Models\SignUpInfo.cs" />
-    <Compile Include="Resources\Strings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\AddLecturerViewModel.cs" />
     <Compile Include="ViewModels\AddStudentViewModel.cs" />
     <Compile Include="ViewModels\ConfirmationWindowViewModel.cs" />
+    <Compile Include="ViewModels\CreateExamViewModel.cs" />
     <Compile Include="ViewModels\LoadablePageViewModel.cs" />
     <Compile Include="ViewModels\LoadableWindowViewModel.cs" />
     <Compile Include="ViewModels\SignInWindowViewModel.cs" />
@@ -156,6 +152,12 @@
     </Compile>
     <Compile Include="Views\Pages\AddStudentPage.xaml.cs">
       <DependentUpon>AddStudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\CreateExamPage.xaml.cs">
+      <DependentUpon>CreateExamPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pages\ExamPage.xaml.cs">
+      <DependentUpon>ExamPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Windows\ConfirmationWindow.xaml.cs">
       <DependentUpon>ConfirmationWindow.xaml</DependentUpon>
@@ -202,10 +204,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Strings.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Page Include="Languages\lang.en.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -228,6 +230,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Pages\AddStudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\CreateExamPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pages\ExamPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -278,6 +288,10 @@
       <Project>{ef27bcfc-fc7a-4761-8e4f-c381f4361c29}</Project>
       <Name>AuthTokenService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Libraries\ExamsApiConsumer\ExamsApiConsumer.csproj">
+      <Project>{CECD7EB2-2077-4436-AC41-A48978A7406E}</Project>
+      <Name>ExamsApiConsumer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Libraries\UsersApiConsumer\UsersApiConsumer.csproj">
       <Project>{684E78F7-735B-44BF-8AA8-0A8BD9B365C6}</Project>
       <Name>UsersApiConsumer</Name>
@@ -285,6 +299,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="xems-icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\s_icon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

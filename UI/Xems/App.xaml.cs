@@ -9,9 +9,10 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using ExamsApiConsumer.Core;
 using UsersApiConsumer.Core;
-using Xems.Resources;
 using Xems.Views.Windows;
+using ResponseStatus = UsersApiConsumer.Core.ResponseStatus;
 
 namespace Xems
 {
@@ -24,11 +25,15 @@ namespace Xems
 
         private readonly UsersApiClient _usersApiClient;
 
+        private readonly ExamsApiClient _examsApiClient;
+
         private readonly bool _isReadyForStartup;
 
         public TokenProvider TokenProvider => this._tokenProvider;
 
         public UsersApiClient UsersApiClient => this._usersApiClient;
+
+        public ExamsApiClient ExamsApiClient => this._examsApiClient;
 
         public App()
         {
@@ -38,6 +43,8 @@ namespace Xems
                     ConfigurationManager.AppSettings["AuthAPI"],28);
 
                 this._usersApiClient = new UsersApiClient(ConfigurationManager.AppSettings["UsersAPI"]);
+
+                this._examsApiClient = new ExamsApiClient(ConfigurationManager.AppSettings["ExamsAPI"]);
 
                 this.ConfigureHandlers();
 
@@ -49,13 +56,18 @@ namespace Xems
             }
         }
 
+        public string GetResource(string key)
+        {
+            return (string)Current.Resources[key];
+        }
+
         private async void App_OnStartup(object sender, StartupEventArgs e)
         {
             this.CheckBeforeStartup();
 
             if (!this._isReadyForStartup)
             {
-                XemsMsgBox.Show(Strings.UnableToStart);
+                XemsMsgBox.Show("Unable to start");
                 return;
             }
 
@@ -99,7 +111,7 @@ namespace Xems
                 }
                 catch (Exception)
                 {
-                    XemsMsgBox.Show(Strings.UnknownError);
+                    XemsMsgBox.Show("Unknown error");
                 }
             }
         }
@@ -144,7 +156,7 @@ namespace Xems
         {
             e.Handled = true;
 
-            XemsMsgBox.Show(Strings.UnknownError);
+            XemsMsgBox.Show("Unknown error");
         }
     }
 }

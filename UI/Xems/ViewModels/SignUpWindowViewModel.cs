@@ -12,7 +12,6 @@ using UsersApiConsumer.Core;
 using UsersApiConsumer.Models;
 using Xems.Globals;
 using Xems.Models;
-using Xems.Resources;
 using Xems.Views.Windows;
 
 namespace Xems.ViewModels
@@ -94,7 +93,7 @@ namespace Xems.ViewModels
             }
             catch (Exception)
             {
-                XemsMsgBox.Show(Strings.UnknownError);
+                XemsMsgBox.Show("Unknown error occured");
             }
             finally
             {

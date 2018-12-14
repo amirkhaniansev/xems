@@ -32,5 +32,10 @@ namespace Xems.ViewModels
             to.Show();
             from.Close();
         }
+
+        public string GetResource(string key)
+        {
+            return (string)Application.Current.Resources[key];
+        }
     }
 }

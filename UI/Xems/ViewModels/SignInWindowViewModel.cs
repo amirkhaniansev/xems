@@ -5,7 +5,6 @@ using AuthTokenService;
 using GalaSoft.MvvmLight.CommandWpf;
 using Xems.Globals;
 using Xems.Models;
-using Xems.Resources;
 using Xems.Views.Windows;
 
 namespace Xems.ViewModels
@@ -61,7 +60,7 @@ namespace Xems.ViewModels
 
                 if (response == TokenStatus.Error)
                 {
-                    XemsMsgBox.Show(Strings.InvalidCredentials);
+                    XemsMsgBox.Show("Invalid username or password");
                     return;
                 }
 
@@ -72,7 +71,7 @@ namespace Xems.ViewModels
             }
             catch (Exception)
             {
-                XemsMsgBox.Show(Strings.UnknownError);
+                XemsMsgBox.Show("Unknown error");
             }
             finally
             {

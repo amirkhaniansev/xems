@@ -6,7 +6,6 @@ using GalaSoft.MvvmLight.CommandWpf;
 using UsersApiConsumer.Core;
 using UsersApiConsumer.Models;
 using Xems.Globals;
-using Xems.Resources;
 using Xems.Views.Windows;
 
 namespace Xems.ViewModels
@@ -52,11 +51,11 @@ namespace Xems.ViewModels
                     return;
                 }
 
-                XemsMsgBox.Show(Strings.StudentAddSuccess);
+                XemsMsgBox.Show("Student is successfully added.");
             }
             catch (Exception)
             {
-                XemsMsgBox.Show(Strings.UnknownError);
+                XemsMsgBox.Show("Unknown error");
             }
             finally
             {

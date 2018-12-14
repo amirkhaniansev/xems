@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-		Title="Xems"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="Xems"
         Height="600" Width="1024" WindowStyle="None" WindowStartupLocation="CenterScreen"
         WindowState="{Binding WindowState}"
         MouseDown="MainWindow_OnMouseDown">
@@ -13,7 +14,7 @@
 	<WindowChrome.WindowChrome>
 		<WindowChrome CaptionHeight="0"/>
 	</WindowChrome.WindowChrome>
-	
+
 	<Window.Resources>
 		<Storyboard x:Key="OpenMenu">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
@@ -28,8 +29,7 @@
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
 			                               Storyboard.TargetName="StackPanelMenu">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/><EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="300"/>
 			</DoubleAnimationUsingKeyFrames>
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
 			                               Storyboard.TargetName="listViewItem">
@@ -74,7 +74,7 @@
 				<EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
 			</DoubleAnimationUsingKeyFrames>
 		</Storyboard>
-		
+
 		<Storyboard x:Key="CloseMenu">
 			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" 
 			                               Storyboard.TargetName="GridMain">
@@ -103,7 +103,7 @@
 			<BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
 		</EventTrigger>
 	</Window.Triggers>
-	
+
 	<Grid Background="#FF3580BF">
 		<StackPanel x:Name="StackPanelMenu" Width="310" HorizontalAlignment="Left" Margin="-310 0 0 0" RenderTransformOrigin="0.5,0.5">
 			<StackPanel.RenderTransform>
@@ -114,7 +114,7 @@
 					<TranslateTransform/>
 				</TransformGroup>
 			</StackPanel.RenderTransform>
-			
+
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center" Margin="50">
 				<Menu Background="Transparent" FlowDirection="LeftToRight" Width="50" Height="50">
 					<MenuItem  FontFamily="Comfortaa" Foreground="White"  Width="50" Height="50"                              FontSize="14" HorizontalAlignment="Right" Name="Menu">
@@ -175,7 +175,15 @@
 					</ListViewItem.RenderTransform>
 					<StackPanel Orientation="Horizontal" Margin="50 0">
 						<materialDesign:PackIcon Kind="Add" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-						<TextBlock Text="Create Exam" Margin="10" VerticalAlignment="Center"/>
+						<TextBlock Text="Create Exam" 
+						           Margin="10" VerticalAlignment="Center">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="PreviewMouseDown">
+									<i:InvokeCommandAction Command="{Binding OpenCreateExamPageCommand}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+
+						</TextBlock>
 					</StackPanel>
 				</ListViewItem>
 				<ListViewItem x:Name="listViewItem1" Height="60" RenderTransformOrigin="0.5,0.5">
@@ -236,7 +244,7 @@
 				</ListViewItem>
 			</ListView>
 		</StackPanel>
-		
+
 		<Grid x:Name="GridMain" Background="#FFFBFBFB" RenderTransformOrigin="0.5,0.5">
 			<Grid.RenderTransform>
 				<TransformGroup>

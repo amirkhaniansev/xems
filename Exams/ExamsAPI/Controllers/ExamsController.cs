@@ -127,6 +127,7 @@ namespace ExamsAPI.Controllers
             try
             {
                 await this._repository.Create(exam);
+                
 
                 return this.Ok();
             }

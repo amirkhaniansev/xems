@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using AuthTokenService;
 using ControlzEx;
 using GalaSoft.MvvmLight.CommandWpf;
 using MaterialDesignThemes.Wpf;
 using Xems.Globals;
-using Xems.Resources;
 using Xems.Views.Pages;
 using Xems.Views.Windows;
 
@@ -45,6 +45,8 @@ namespace Xems.ViewModels
         private ICommand _openAddLecturer;
 
         private ICommand _openAddStudent;
+
+        private ICommand _openCreateExamPageCommand;
 
         public string Name
         {
@@ -118,6 +120,8 @@ namespace Xems.ViewModels
 
         public ICommand OpenAddStudentCommand => this._openAddStudent;
 
+        public ICommand OpenCreateExamPageCommand => this._openCreateExamPageCommand;
+
         public MainWindowViewModel()
         {
             this.Name = XemsUser.Default.Username;
@@ -130,9 +134,12 @@ namespace Xems.ViewModels
             this._openMenuCommand = new RelayCommand(
                 () => this.SetMenuVisibilities(Visibility.Collapsed, Visibility.Visible));
             this._openAddLecturer = new RelayCommand(
-                () => this.FrameContent = new AddLecturerPage());
+                () => this.ChangeFrameContent(new AddLecturerPage()));
             this._openAddStudent = new RelayCommand(
-                () => this.FrameContent = new AddStudentPage());
+                () => this.ChangeFrameContent(new AddStudentPage()));
+            this._openCreateExamPageCommand = new RelayCommand(
+                () => this.ChangeFrameContent(new CreateExamPage()));
+
 
             this._windowStateCommand = new RelayCommand(this.ChangeWindowState);
             this._minimizeCommand = new RelayCommand(() => this.WindowState = WindowState.Minimized);
@@ -170,7 +177,7 @@ namespace Xems.ViewModels
 
                 if (response == TokenStatus.Error)
                 {
-                    XemsMsgBox.Show(Strings.SignOutFail);
+                    XemsMsgBox.Show("Sign out failed");
                     return;
                 }
 
@@ -180,9 +187,17 @@ namespace Xems.ViewModels
             }
             catch (Exception)
             {
-                XemsMsgBox.Show(Strings.UnknownError);
+                XemsMsgBox.Show("Unknown error");
             }
         }
-            
+
+
+        private void ChangeFrameContent(Page page)
+        {
+            if (this.FrameContent?.GetType() == page.GetType())
+                return;
+
+            this.FrameContent = page;
+        }
     }
 }
