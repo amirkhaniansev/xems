@@ -94,6 +94,10 @@ namespace ExamsAPI
                 options => options.AddPolicy("IsLecturer", 
                     policy => policy.RequireClaim("current_profile", "lecturer"))
                 );
+
+            services.AddAuthorization(
+                options => options.AddPolicy("IsStudent",
+                    policy => policy.RequireClaim("current_profile", "student")));
         }
 
         /// <summary>
