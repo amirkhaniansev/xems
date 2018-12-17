@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ExamsApiConsumer.Enums;
 using ExamsApiConsumer.Models;
 using GalaSoft.MvvmLight.CommandWpf;
 using UsersApiConsumer.Core;
@@ -18,13 +22,9 @@ namespace Xems.ViewModels
         private Test _currentTest;
 
         private int _currentQuestionNumber;
-
-        private bool _isDoneAvailable;
-
+        
         private Question _currentQuestion;
-
-        private ICommand _addStudentCommand;
-
+        
         private ICommand _addTestCommand;
 
         private ICommand _addQuestionCommand;
@@ -66,10 +66,6 @@ namespace Xems.ViewModels
             set => this.Set("CurrentQuestionNumber", ref this._currentQuestionNumber, value);
         }
 
-        public ICommand AddStudentCommand =>
-            this._addStudentCommand ?? (
-                this._addStudentCommand = new RelayCommand(this.AddStudentExecute));
-
         public ICommand AddTestCommand =>
             this._addTestCommand ?? (
                 this._addTestCommand = new RelayCommand(this.AddTestExecute));
@@ -82,7 +78,54 @@ namespace Xems.ViewModels
             this._addExamCommand ?? (
                 this._addExamCommand = new RelayCommand(this.AddExamExecute));
 
-        private async void AddStudentExecute()
+        public CreateExamViewModel()
+        {
+            this._exam = new Exam
+            {
+                CreatorUserId = XemsUser.Default.Id,
+                ExamType = ExamType.Default,
+                HasGrade = true,
+                MaxGrade = 20M,
+                Modifiers = new List<int>(),
+                Students = new List<int>(),
+                Tests = new List<Test>()
+            };
+
+            this._currentTest = new Test
+            {
+                CreatorId = XemsUser.Default.Id,
+                Questions = new List<Question>()
+            };
+
+            this._currentQuestion = new Question
+            {
+                QuestionType = QuestionType.WithVariants,
+                Variants = new List<Variant>
+                {
+                    new Variant
+                    {
+                        VariantSymbol = "a)"
+                    },
+                    new Variant
+                    {
+                        VariantSymbol = "b)"
+                    },
+                    new Variant
+                    {
+                        VariantSymbol = "c)"
+                    },
+                    new Variant
+                    {
+                        VariantSymbol = "d)"
+                    }
+                }
+            };
+
+            this._currentQuestionNumber = 1;
+
+        }
+
+        public async Task AddStudentExecute(string student)
         {
             try
             {
@@ -145,15 +188,25 @@ namespace Xems.ViewModels
 
         private void AddTestExecute()
         {
+            this.CurrentTest.Created = DateTime.Now;
+
             this.Exam.Tests.Add(this.CurrentTest);
-            this.CurrentTest = new Test();
+
+            this.CurrentTest.Questions.Clear();
+            this.CurrentTest.Duration = null;
+            this.CurrentTest.Point = null;
             this.CurrentQuestionNumber = 1;
         }
 
         private void AddQuestionExecute()
         {
             this.CurrentTest.Questions.Add(this.CurrentQuestion);
-            this.CurrentQuestion = new Question();
+
+            foreach (var variant in this.CurrentQuestion.Variants)
+            {
+                variant.Text = string.Empty;
+            }
+
             this.CurrentQuestionNumber++;
         }
     }

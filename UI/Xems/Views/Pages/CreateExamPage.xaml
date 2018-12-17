@@ -24,86 +24,136 @@
 		</Style>
 
 	</Page.Resources>
-	<Grid>
-		<Grid.Background>
-			<SolidColorBrush Color="AliceBlue"/>
-		</Grid.Background>
-		<Grid.RowDefinitions>
+	<Border BorderThickness="3" BorderBrush="#FF3580BF">
+		<Grid>
+			<Grid.Background>
+				<SolidColorBrush Color="AliceBlue"/>
+			</Grid.Background>
+			<Grid.RowDefinitions>
 
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="*"/>
 
-		</Grid.RowDefinitions>
+			</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0" Margin="0,10,0,0">
+			<StackPanel Grid.Row="0" Margin="0,10,0,0">
 
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-				<TextBlock Text="Create Exam" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					<TextBlock Text="Create Exam" HorizontalAlignment="Center" Foreground="#FF182634" Margin="0,20,0,0" FontSize="24" FontFamily="Comfortaa"/>
 
-				<fa:ImageAwesome Icon="Spinner" 
+					<fa:ImageAwesome Icon="Spinner" 
                              Spin="{Binding IsSpinning}"
                              Visibility="{Binding SpinnerVisibility}"
                              SpinDuration="2" Foreground="#FF3580BF" Width="50" Height="50" Margin="10,0,0,0"/>
+				</StackPanel>
+				<Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
+
 			</StackPanel>
-			<Separator Background="#FF182634" Width="600" Margin="0,5" Foreground="#FF182634" />
 
-		</StackPanel>
+			<Grid Row="1">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="0.5*"/>
+					<ColumnDefinition Width="0.6*"/>
+				</Grid.ColumnDefinitions>
 
-		<Grid Row="1">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="0.5*"/>
-				<ColumnDefinition Width="0.6*"/>
-			</Grid.ColumnDefinitions>
+				<StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="40,20,40,34">
 
-			<StackPanel Grid.Column="0" HorizontalAlignment="Center" Margin="40,20,40,34">
-
-				<Label Content="Duration in minutes" FontSize="16" Foreground="#FF182634" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-				<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"
+					<Label Content="Duration in minutes" FontSize="16" Foreground="#FF182634" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+					<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"
 			         TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding Exam.Duration, UpdateSourceTrigger=PropertyChanged}"/>
 
-				<Label Content="Maximum Grade" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-				<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
+					<Label Content="Maximum Grade" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+					<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
                      Text="{Binding Exam.MaxGrade, UpdateSourceTrigger=PropertyChanged}"/>
 
-				<Label Content="Students" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-				<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
-			         Text="{Binding CurrentStudent, UpdateSourceTrigger=PropertyChanged}">
-					<i:Interaction.Triggers>
-						<i:EventTrigger EventName="KeyDown">
-							<i:InvokeCommandAction Command="{Binding AddStudentCommand}"/>
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-				</TextBox>
-				<StackPanel Orientation="Horizontal">
-					<Button Content="Done" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF3580BF" Width="120"
+					<Label Content="Students" FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" Margin="0,5,0,5" HorizontalAlignment="Center"/>
+					<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap" Width="240" Padding="5, 2"
+			         Text="{Binding CurrentStudent, UpdateSourceTrigger=PropertyChanged}"
+				     KeyDown="UIElement_OnKeyDown" Name="_studentTextBox"/>
+
+					<StackPanel Orientation="Horizontal">
+						<Button Content="Done" Margin="0,20,0,0" BorderBrush="{x:Null}" Background="#FF3580BF" Width="120"
                     Command="{Binding AddExamCommand}" />
-					<Button Content="Add test" Margin="5,20,0,0" BorderBrush="{x:Null}" Background="#FF3580BF" Width="120"
+						<Button Content="Add test" Margin="5,20,0,0" BorderBrush="{x:Null}" Background="#FF3580BF" Width="120"
 					        Command="{Binding AddTestCommand}" />
-				</StackPanel>
-			</StackPanel>
-
-			<StackPanel Grid.Column="1">
-				<StackPanel Orientation="Horizontal">
-					<Label Content="Duration in minutes" FontSize="16" Foreground="#FF182634" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-					<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"
-				         TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="5,0"
-				         Text="{Binding Exam.Duration, UpdateSourceTrigger=PropertyChanged}"/>
+					</StackPanel>
 				</StackPanel>
 
-				<StackPanel Orientation="Horizontal">
-					<Label Content="Point" FontSize="16" Foreground="#FF182634" FontFamily="Comfortaa" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-					<TextBox Height="25"  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom"
-					         TextWrapping="NoWrap" Width="240" Padding="5, 2" Margin="110,0"
-					         Text="{Binding Exam.Duration, UpdateSourceTrigger=PropertyChanged}"/>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<Label Content="Question No : " FontSize="16" FontFamily="Comfortaa" Foreground="#FF182634" Margin="0,5,0,5" HorizontalAlignment="Center"/>
-					<TextBlock Height="25" Foreground="#FF182634" FontSize="14" FontFamily="Comfortaa" TextWrapping="NoWrap" Width="240" Padding="5, 2"
-					         Text="{Binding CurrentQuestionNumber, UpdateSourceTrigger=PropertyChanged}"/>
+				<Grid Grid.Column="1">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="0.4*"/>
+						<RowDefinition Height="0.6*"/>
+					</Grid.RowDefinitions>
 
-				</StackPanel>
-			</StackPanel>
+					<Grid Grid.Row="0">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="*"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="40*"/>
+							<ColumnDefinition Width="69*"/>
+						</Grid.ColumnDefinitions>
+
+						<Label Content="Test Duration" FontSize="16" FontFamily="Comfortaa" Grid.Row="0" Grid.Column="0"
+						       Foreground="#FF182634" Margin="10,24,0,0.5" HorizontalAlignment="Left" Width="103" />
+						<TextBox  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" Grid.Row="0" Grid.Column="1"
+						         FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"
+						         Text="{Binding CurrentTest.Duration, UpdateSourceTrigger=PropertyChanged}" Margin="0,13,22,10"/>
+
+						<Label Content="Test Point" FontSize="16" FontFamily="Comfortaa" Grid.Row="1" Grid.Column="0"
+					       Foreground="#FF182634" Margin="10,19,0,6" HorizontalAlignment="Left" Width="78"/>
+						<TextBox  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" Grid.Row="1" Grid.Column="1"
+					         FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"
+					         Text="{Binding CurrentTest.Point, UpdateSourceTrigger=PropertyChanged}" Margin="0,13,22,13"/>
+
+						<Label Content="Question Number" FontSize="16" FontFamily="Comfortaa" Grid.Row="2" Grid.Column="0"
+					       Foreground="#FF182634" Margin="13,19,0,6" HorizontalAlignment="Left" Width="137"/>
+						<TextBox  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" Grid.Row="2" Grid.Column="1"
+					         FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"
+					         Text="{Binding CurrentQuestionNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0,13,22,13"/>
+
+					</Grid>
+
+					<Border BorderThickness="3" Grid.Row="1" BorderBrush="#FF3580BF">
+						<StackPanel Orientation="Vertical">
+							<StackPanel Orientation="Horizontal">
+								<Label Content="Question Text" FontSize="16" FontFamily="Comfortaa"
+							       Foreground="#FF182634" Margin="10,10,0,10" HorizontalAlignment="Left" Width="137"/>
+								<TextBox  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" 
+							          FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"
+							          Text="{Binding CurrentQuestion.Text, UpdateSourceTrigger=PropertyChanged}" Margin="0,13" Width="275"/>
+
+							</StackPanel>
+
+							<ScrollViewer VerticalScrollBarVisibility="Auto">
+								<ListView ItemsSource="{Binding CurrentQuestion.Variants}">
+									<ListView.ItemTemplate>
+										<DataTemplate>
+											<WrapPanel>
+												<StackPanel Orientation="Horizontal">
+													<Label Content="{Binding VariantSymbol}" FontSize="16" FontFamily="Comfortaa"
+								       Foreground="#FF182634" Margin="10,10,0,10" HorizontalAlignment="Left" Width="137"/>
+													<TextBox  BorderBrush="#FF3580BF" CaretBrush="#FF182634" Foreground="#FF182634" 
+								          FontSize="14" FontFamily="Comfortaa" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" TextWrapping="NoWrap"
+								          Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}" Margin="0,13" Width="275"/>
+												</StackPanel>
+											</WrapPanel>
+										</DataTemplate>
+									</ListView.ItemTemplate>
+								</ListView>
+							</ScrollViewer>
+
+
+							<Button Content="Add question" Margin="5,20,0,0" BorderBrush="{x:Null}" Background="#FF3580BF" Width="120"
+						        Command="{Binding AddQuestionCommand}" />
+						</StackPanel>
+					</Border>
+				</Grid>
+
+			</Grid>
 		</Grid>
-	</Grid>
+	</Border>
 </Page>

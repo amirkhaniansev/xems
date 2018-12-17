@@ -27,5 +27,18 @@ namespace Xems.Views.Pages
 
             this.DataContext = new CreateExamViewModel();
         }
+
+        private async void UIElement_OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key != Key.Enter)
+                return;
+
+            var vm = this.DataContext as CreateExamViewModel;
+
+            if(vm == null)
+                return;
+            
+            await vm.AddStudentExecute(this._studentTextBox.Text);
+        }
     }
 }
